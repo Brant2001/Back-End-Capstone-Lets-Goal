@@ -9,8 +9,9 @@ values (1, 'Easy'), (2, 'Medium'), (3, 'Hard');
 set identity_insert [Difficulty] off
 
 set identity_insert [UserProfile] on
-insert into UserProfile (Id, DisplayName, FirstName, LastName, Email, ImageUrl, IsPublic, FirebaseUserId) values (2, 'bpippin', 'Brant', 'Pippin', 'brant@email.com', 'https://robohash.org/nisiautemet.png?size=150x150&set=set1', 1, 'xElYn7C66baHREwHBhwYFhuIWPa2');
-insert into UserProfile (Id, DisplayName, FirstName, LastName, Email, ImageUrl, IsPublic, FirebaseUserId) values (3, 'pmartin', 'Philip', 'Martin', 'philip@email.com', 'https://robohash.org/molestiaemagnamet.png?size=150x150&set=set1', 1, 'kBzFyUJAXzRBXfVmcX7py6zIoGz1');
+insert into UserProfile (Id, DisplayName, FirstName, LastName, Email, ImageUrl, IsPublic, FirebaseUserId) values (1, 'jdoe', 'John', 'Doe', 'john@email.com', 'https://robohash.org/nisiautemet.png?size=150x150&set=set1', 1, 'xElYn7C66baHREwHBhwYFhuIWPa2');
+insert into UserProfile (Id, DisplayName, FirstName, LastName, Email, ImageUrl, IsPublic, FirebaseUserId) values (2, 'lberry', 'Larry', 'Barry', 'larry@email.com', 'https://robohash.org/nisiautemet.png?size=150x150&set=set1', 1, 'xElYn7C66baHREwHBhwYFhuIWPa2');
+insert into UserProfile (Id, DisplayName, FirstName, LastName, Email, ImageUrl, IsPublic, FirebaseUserId) values (3, 'brob', 'Bob', 'Rob', 'bob@email.com', 'https://robohash.org/molestiaemagnamet.png?size=150x150&set=set1', 1, 'kBzFyUJAXzRBXfVmcX7py6zIoGz1');
 set identity_insert [UserProfile] off
 
 set identity_insert [Goal] on
