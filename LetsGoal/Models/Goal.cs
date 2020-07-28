@@ -13,11 +13,11 @@ namespace LetsGoal.Models
         [Required]
         public int UserProfileId { get; set; }
 
+        public UserProfile UserProfile { get; set; }
+
         public int GoalTypeId { get; set; }
 
         public int DifficultyId { get; set; }
-
-        public UserProfile UserProfile { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -28,7 +28,7 @@ namespace LetsGoal.Models
         public DateTime DateCreated { get; set; }
 
         [Required]
-        public bool IsComplete { get; set; }
+        public bool IsComplete { get; set; }    
 
         public List<Action> actions { get; set; }
     }

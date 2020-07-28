@@ -12,6 +12,8 @@ namespace LetsGoal.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<Goal> Goal { get; set; }
+        public DbSet<LetsGoal.Models.Action> Action { get; set; }
 
     }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { UserProfileContext } from "./UserProfileProvider";
+import { UserProfileContext } from "../user/UserProfileProvider";
 
 export const GoalContext = React.createContext();
 
@@ -69,7 +69,7 @@ export const GoalProvider = (props) => {
 
     return (
         <GoalContext.Provider value={{
-            goals, getAllGoals, addGoal, deleteGoal, getGoal, getAllGoals, updateGoal
+            goals, getAllGoals, addGoal, deleteGoal, getGoal, updateGoal
         }}>
             {props.children}
         </GoalContext.Provider>

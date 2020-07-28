@@ -35,8 +35,7 @@ namespace LetsGoal.Models
         [MaxLength(255)]
         public string ImageUrl { get; set; }
 
-        [Required]
-        public bool IsPublic { get; set; }
+        public bool IsPublic { get; set; } = true;
 
         public string FullName
         {

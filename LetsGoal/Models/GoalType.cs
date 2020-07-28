@@ -7,5 +7,6 @@ namespace LetsGoal.Models
 {
     public class GoalType
     {
+        public int Id { get; set; }
     }
 }

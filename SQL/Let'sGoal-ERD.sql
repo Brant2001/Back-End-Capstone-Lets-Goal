@@ -31,13 +31,13 @@ CREATE TABLE [UserProfile] (
 GO
 
 CREATE TABLE [GoalType] (
-  [Id] int PRIMARY KEY,
+  [Id] int PRIMARY KEY IDENTITY,
   [Title] nvarchar(255) NOT NULL
 )
 GO
 
 CREATE TABLE [Difficulty] (
-  [Id] int PRIMARY KEY,
+  [Id] int PRIMARY KEY IDENTITY,
   [Title] nvarchar(255) NOT NULL
 )
 GO
