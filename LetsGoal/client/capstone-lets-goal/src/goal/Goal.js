@@ -14,7 +14,7 @@ export const Goal = ({ goal }) => {
                     </Link>
                 </div>
                 <div className="goalItems">
-                    <p>Created: {format(new Date(goal.createDateTime), 'MM/dd/yyyy')}</p>
+                    <p>Created: {format(new Date(goal.dateCreated), 'MM/dd/yyyy')}</p>
                 </div>
             </CardBody>
         </Card>

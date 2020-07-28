@@ -20,7 +20,7 @@ export default function Header() {
     return (
         <div>
             <Navbar color="light" light expand="md" >
-                <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/">Lets Goal!</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
 
