@@ -10,7 +10,6 @@ export const GoalProvider = (props) => {
     const apiUrl = '/api/goal'
 
     const getAllGoals = () => {
-        debugger
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "GET",

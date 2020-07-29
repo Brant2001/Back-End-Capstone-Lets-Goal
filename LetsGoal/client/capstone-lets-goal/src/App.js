@@ -5,15 +5,18 @@ import { UserProfileProvider } from "./user/UserProfileProvider";
 import Header from "./Header";
 import ApplicationViews from "./ApplicationViews";
 import { GoalProvider } from './goal/GoalProvider';
+import { UserGoalProvider } from './goal/UserGoalProvider';
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
-        <GoalProvider>
-          <Header />
-          <ApplicationViews />
-        </GoalProvider>
+        <UserGoalProvider>
+          <GoalProvider>
+            <Header />
+            <ApplicationViews />
+          </GoalProvider>
+        </UserGoalProvider>
       </UserProfileProvider>
     </Router>
   );

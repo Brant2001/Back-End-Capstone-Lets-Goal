@@ -1,20 +1,22 @@
 import React from "react";
-import { Card, CardImg, CardBody } from "reactstrap";
+import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom"
 import { format } from 'date-fns'
 
 export const Goal = ({ goal }) => {
     return (
         <Card className="m-4 goal">
-            <CardImg top src={goal.imageLocation} />
             <CardBody>
                 <div className="goalTitle">
-                    <Link to={`/goals/${goal.id}`}>
+                    <Link to={`/goal/${goal.id}`}>
                         <h3>{goal.title}</h3>
                     </Link>
                 </div>
                 <div className="goalItems">
                     <p>Created: {format(new Date(goal.dateCreated), 'MM/dd/yyyy')}</p>
+                    <p>Goal Type: {goal.goalType.title}</p>
+                    <p>Difficulty: {goal.difficulty.title}</p>
+                    <p>Completed Status: {goal.isComplete === true ? "True" : "False"}</p>
                 </div>
             </CardBody>
         </Card>

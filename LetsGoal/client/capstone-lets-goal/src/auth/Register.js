@@ -11,7 +11,7 @@ export default function Register() {
     const [lastName, setLName] = useState();
     const [displayName, setDName] = useState();
     const [image, setImage] = useState();
-    const [isPublic, setIsPublic] = useState();
+    const [isPublic] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
@@ -47,10 +47,6 @@ export default function Register() {
                     <Label htmlFor="image">Profile Picture</Label>
                     <Input id="image" type="text" onChange={e => setImage(e.target.value)} />
                 </FormGroup>
-                {/* <FormGroup>
-                    <Label htmlFor="public">Make public</Label>
-                    <Input id="public" type="hidden" onChange={e => setIsPublic(true)} />
-                </FormGroup> */}
                 <FormGroup>
                     <Label for="email">Email</Label>
                     <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />

@@ -19,27 +19,43 @@ namespace LetsGoal.Repositories
 
         public List<Goal> GetAll()
         {
-            return _context.Goal.Include(p => p.UserProfile).Include(p => p.actions).OrderByDescending(p => p.DateCreated).ToList();
+            return _context.Goal
+                .Include(p => p.UserProfile)
+                .Include(p => p.GoalType)
+                .Include(p => p.Difficulty)
+                .Include(p => p.actions)
+                .OrderBy(p => p.GoalType.Id)
+                .ToList();
         }
 
         public Goal GetById(int id)
         {
-            return _context.Goal.Include(p => p.UserProfile).Include(p => p.actions).FirstOrDefault(p => p.Id == id);
+            return _context.Goal
+                .Include(p => p.UserProfile)
+                .Include(p => p.GoalType)
+                .Include(p => p.Difficulty)
+                .Include(p => p.actions)
+                .FirstOrDefault(p => p.Id == id);
         }
 
         public List<Goal> GetByUserProfileId(int id)
         {
-            return _context.Goal.Include(p => p.UserProfile)
-                            .Include(p => p.actions)
-                            .Where(p => p.UserProfileId == id)
-                            .OrderBy(p => p.Title)
-                            .ToList();
+            return _context.Goal       
+                .Include(p => p.UserProfile)
+                .Include(p => p.GoalType)
+                .Include(p => p.Difficulty)
+                .Include(p => p.actions)
+                .Where(p => p.UserProfileId == id)
+                .OrderBy(p => p.GoalType.Id)
+                .ToList();
         }
 
         public List<Goal> Search(string criterion, bool sortDescending)
         {
             var query = _context.Goal
                                 .Include(p => p.UserProfile)
+                                .Include(p => p.GoalType)
+                                .Include(p => p.Difficulty)
                                 .Include(p => p.actions)
                                 .Where(p => p.Title.Contains(criterion) || p.Description.Contains(criterion));
 
@@ -52,6 +68,8 @@ namespace LetsGoal.Repositories
         {
             var query = _context.Goal
                                 .Include(p => p.UserProfile)
+                                .Include(p => p.GoalType)
+                                .Include(p => p.Difficulty)
                                 .Include(p => p.actions)
                                 .Where(p => p.DateCreated >= dateTime);
 
