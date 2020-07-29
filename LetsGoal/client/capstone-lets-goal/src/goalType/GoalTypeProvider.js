@@ -7,7 +7,7 @@ export const GoalTypeProvider = (props) => {
     const { getToken } = useContext(UserProfileContext)
     const [goalTypes, setGoalTypes] = useState([]);
 
-    const apiUrl = '/api/goalType'
+    const apiUrl = '/api/goaltype'
 
     const getAllGoalTypes = () => {
         return getToken().then((token) =>

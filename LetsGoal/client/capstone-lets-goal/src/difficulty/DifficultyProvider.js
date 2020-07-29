@@ -32,10 +32,10 @@ export const DifficultyProvider = (props) => {
     };
 
     return (
-        <DifficultieContext.Provider value={{
+        <DifficultyContext.Provider value={{
             difficulties, getAllDifficulties, getDifficulty
         }}>
             {props.children}
-        </DifficultieContext.Provider>
+        </DifficultyContext.Provider>
     );
 };

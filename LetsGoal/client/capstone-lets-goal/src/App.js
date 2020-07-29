@@ -6,16 +6,22 @@ import Header from "./Header";
 import ApplicationViews from "./ApplicationViews";
 import { GoalProvider } from './goal/GoalProvider';
 import { UserGoalProvider } from './goal/UserGoalProvider';
+import { GoalTypeProvider } from './goalType/GoalTypeProvider';
+import { DifficultyContext } from './difficulty/DifficultyProvider';
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
         <UserGoalProvider>
-          <GoalProvider>
-            <Header />
-            <ApplicationViews />
-          </GoalProvider>
+          <GoalTypeProvider>
+            <DifficultyContext>
+              <GoalProvider>
+                <Header />
+                <ApplicationViews />
+              </GoalProvider>
+            </DifficultyContext>
+          </GoalTypeProvider>
         </UserGoalProvider>
       </UserProfileProvider>
     </Router>
