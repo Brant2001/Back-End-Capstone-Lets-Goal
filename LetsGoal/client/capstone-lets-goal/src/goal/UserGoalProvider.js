@@ -21,6 +21,7 @@ export const UserGoalProvider = (props) => {
     };
 
     const addGoal = (goal) => {
+        debugger
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",
@@ -30,7 +31,7 @@ export const UserGoalProvider = (props) => {
                 },
                 body: JSON.stringify(goal)
             }).then(resp => resp.json())
-                .then(getAllGoalsByUser))
+                .then(getAllGoalsByUser(goal.userProfileId)))
     };
 
     const deleteGoal = (goal) => {

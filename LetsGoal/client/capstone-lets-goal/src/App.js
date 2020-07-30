@@ -7,7 +7,7 @@ import ApplicationViews from "./ApplicationViews";
 import { GoalProvider } from './goal/GoalProvider';
 import { UserGoalProvider } from './goal/UserGoalProvider';
 import { GoalTypeProvider } from './goalType/GoalTypeProvider';
-import { DifficultyContext } from './difficulty/DifficultyProvider';
+import { DifficultyProvider } from './difficulty/DifficultyProvider';
 
 function App() {
   return (
@@ -15,12 +15,12 @@ function App() {
       <UserProfileProvider>
         <UserGoalProvider>
           <GoalTypeProvider>
-            <DifficultyContext>
+            <DifficultyProvider>
               <GoalProvider>
                 <Header />
                 <ApplicationViews />
               </GoalProvider>
-            </DifficultyContext>
+            </DifficultyProvider>
           </GoalTypeProvider>
         </UserGoalProvider>
       </UserProfileProvider>

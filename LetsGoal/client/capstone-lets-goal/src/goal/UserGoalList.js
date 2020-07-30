@@ -25,18 +25,18 @@ export const UserGoalList = () => {
                     {userGoals.map((userGoal) => (
                         <UserGoal key={userGoal.id} userGoal={userGoal} />
                     ))}
-                    <Button type="submit"
-                        color="primary"
-                        onClick={
-                            evt => {
-                                evt.preventDefault()
-                                setInput(true)
-                            }
-                        }
-                        className="addActionBtn">
-                        Add Goal
-                    </Button>
                 </div>
+                <Button type="submit"
+                    color="primary"
+                    onClick={
+                        evt => {
+                            evt.preventDefault()
+                            setInput(true)
+                        }
+                    }
+                    className="addActionBtn">
+                    Add Goal
+                </Button>
                 <div>{displayInput()}</div>
             </div>
         </div>

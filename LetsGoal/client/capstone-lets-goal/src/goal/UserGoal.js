@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom"
 import { format } from 'date-fns'
+import { Button } from "reactstrap";
+import { UserGoalContext } from "./UserGoalProvider";
 
 export const UserGoal = ({ userGoal }) => {
+    const { deleteGoal } = useContext(UserGoalContext)
 
     return (
         <div className="m-4 goal">
@@ -16,6 +19,9 @@ export const UserGoal = ({ userGoal }) => {
                 <p>Goal Type: {userGoal.goalType.title}</p>
                 <p>Difficulty: {userGoal.difficulty.title}</p>
                 <p>Completed Status: {userGoal.isComplete === true ? "True" : "False"}</p>
+            </div>
+            <div>
+                <Button onClick={evt => { evt.preventDefault(); deleteGoal(userGoal) }}>Delete</Button>
             </div>
         </div>
     );

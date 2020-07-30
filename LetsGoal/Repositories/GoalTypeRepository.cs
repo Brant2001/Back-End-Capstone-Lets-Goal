@@ -27,22 +27,22 @@ namespace LetsGoal.Repositories
         {
             return _context.GoalType.FirstOrDefault(c => c.Id == id);
         }
-        public void Add(GoalType category)
+        public void Add(GoalType goalType)
         {
-            _context.Add(category);
+            _context.Add(goalType);
             _context.SaveChanges();
         }
 
-        public void Update(GoalType category)
+        public void Update(GoalType goalType)
         {
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(goalType).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var category = GetById(id);
-            _context.GoalType.Remove(category);
+            var goalType = GetById(id);
+            _context.GoalType.Remove(goalType);
             _context.SaveChanges();
         }
     }

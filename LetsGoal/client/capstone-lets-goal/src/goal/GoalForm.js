@@ -1,11 +1,11 @@
 import React, { useContext, useRef, useEffect } from 'react'
-import { GoalContext } from './GoalProvider'
 import { useHistory } from 'react-router-dom'
 import { GoalTypeContext } from '../goalType/GoalTypeProvider'
 import { DifficultyContext } from '../difficulty/DifficultyProvider'
+import { UserGoalContext } from './UserGoalProvider'
 
 export default props => {
-    const { addGoal } = useContext(GoalContext)
+    const { addGoal } = useContext(UserGoalContext)
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
     const history = useHistory()
@@ -21,10 +21,10 @@ export default props => {
         const newGoalObject = {
             title: title.current.value,
             description: description.current.value,
-            createDateTime: new Date(),
+            dateCreated: new Date(),
             goalTypeId: parseInt(goalType.current.value),
             userProfileId: userProfile.id,
-            difficulty: difficulty.current.value,
+            difficultyId: parseInt(difficulty.current.value),
         }
 
         console.log(newGoalObject)

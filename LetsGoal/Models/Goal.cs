@@ -29,7 +29,7 @@ namespace LetsGoal.Models
         public string Description { get; set; }
 
         [Required]
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         [Required]
         public bool IsComplete { get; set; }    
