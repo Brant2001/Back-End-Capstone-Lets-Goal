@@ -15,7 +15,6 @@ export const Goal = ({ goal }) => {
                 <p>Created: {format(new Date(goal.dateCreated), 'MM/dd/yyyy')}</p>
                 <p>Goal Type: {goal.goalType.title}</p>
                 <p>Difficulty: {goal.difficulty.title}</p>
-                <p>Completed Status: {goal.isComplete === true ? "True" : "False"}</p>
             </div>
         </div>
     );

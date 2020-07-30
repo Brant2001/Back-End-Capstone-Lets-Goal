@@ -42,7 +42,7 @@ export const EditGoalForm = (props) => {
                                 required
                                 autoFocus
                                 className="form-control"
-                                placeholder="Edit goal title"
+                                placeholder="Edit Goal Title"
                                 defaultValue={props.goal.title}
                                 onChange={handleControlledInputChange}
                             />
@@ -64,26 +64,14 @@ export const EditGoalForm = (props) => {
                                 name="goalTypeId"
                                 required
                                 className="form-control"
-                                defaultValue={
-                                    props.goal.goalType.isDeleted ? null : props.goal.goalTypeId
-                                }
+                                defaultValue={props.goal.goalType.title}
                                 onChange={handleControlledInputChange}
                             >
-                                <option
-                                    value={
-                                        props.goal.goalType.isDeleted ? null : props.goal.goalTypeId
-                                    }
-                                >
-                                    {props.goal.goalType.isDeleted
-                                        ? "Select a Goal Type"
-                                        : props.goal.goalType.name}
-                                </option>
-                                {goalTypes.map((gt) =>
-                                    gt.isDeleted ? null : (
-                                        <option key={gt.id} value={gt.id}>
-                                            {gt.name}
-                                        </option>
-                                    )
+                                {goalTypes.map((gt) => (
+                                    <option key={gt.id} value={gt.id}>
+                                        {gt.title}
+                                    </option>
+                                )
                                 )}
                             </select>
                             Difficulty:
@@ -91,26 +79,14 @@ export const EditGoalForm = (props) => {
                                 name="difficultyId"
                                 required
                                 className="form-control"
-                                defaultValue={
-                                    props.goal.difficulty.isDeleted ? null : props.goal.difficultyId
-                                }
+                                defaultValue={props.goal.difficulty.title}
                                 onChange={handleControlledInputChange}
                             >
-                                <option
-                                    value={
-                                        props.goal.difficulty.isDeleted ? null : props.goal.difficultyId
-                                    }
-                                >
-                                    {props.goal.difficulty.isDeleted
-                                        ? "Select a Difficulty"
-                                        : props.goal.difficulty.name}
-                                </option>
-                                {difficulties.map((gt) =>
-                                    gt.isDeleted ? null : (
-                                        <option key={gt.id} value={gt.id}>
-                                            {gt.name}
-                                        </option>
-                                    )
+                                {difficulties.map((gt) => (
+                                    <option key={gt.id} value={gt.id}>
+                                        {gt.title}
+                                    </option>
+                                )
                                 )}
                             </select>
                         </label>
