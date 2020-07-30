@@ -17,6 +17,8 @@ namespace LetsGoal.Models
 
         public int DifficultyId { get; set; }
 
+        public Difficulty Difficulty { get; set; }
+
         [Required]
         public string Title { get; set; }
 

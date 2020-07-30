@@ -17,54 +17,54 @@ namespace LetsGoal.Controllers
     [ApiController]
     public class GoalController : ControllerBase
     {
-        private readonly GoalRepository _postRepository;
+        private readonly GoalRepository _goalRepository;
         private readonly UserProfileRepository _userProfileRepository;
 
         public GoalController(ApplicationDbContext context)
         {
-            _postRepository = new GoalRepository(context);
+            _goalRepository = new GoalRepository(context);
             _userProfileRepository = new UserProfileRepository(context);
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_postRepository.GetAll());
+            return Ok(_goalRepository.GetAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var post = _postRepository.GetById(id);
-            if (post == null)
+            var goal = _goalRepository.GetById(id);
+            if (goal == null)
             {
                 return NotFound();
             }
-            return Ok(post);
+            return Ok(goal);
         }
 
         [HttpGet("getbyuser/{id}")]
         public IActionResult GetByUser(int id)
         {
-            return Ok(_postRepository.GetByUserProfileId(id));
+            return Ok(_goalRepository.GetByUserProfileId(id));
         }
 
         [HttpPost]
-        public IActionResult Goal(Goal post)
+        public IActionResult Goal(Goal goal)
         {
-            _postRepository.Add(post);
-            return CreatedAtAction("Get", new { id = post.Id }, post);
+            _goalRepository.Add(goal);
+            return CreatedAtAction("Get", new { id = goal.Id }, goal);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Goal post)
+        public IActionResult Put(int id, Goal goal)
         {
-            if (id != post.Id)
+            if (id != goal.Id)
             {
                 return BadRequest();
             }
 
-            _postRepository.Update(post);
+            _goalRepository.Update(goal);
             return NoContent();
         }
 
@@ -72,13 +72,13 @@ namespace LetsGoal.Controllers
         public IActionResult Delete(int id)
         {
             var user = GetCurrentUserProfile();
-            var post = _postRepository.GetById(id);
-            if (user.Id != post.UserProfileId)
+            var goal = _goalRepository.GetById(id);
+            if (user.Id != goal.UserProfileId)
             {
                 return Forbid();
             }
 
-            _postRepository.Delete(id);
+            _goalRepository.Delete(id);
             return NoContent();
         }
 

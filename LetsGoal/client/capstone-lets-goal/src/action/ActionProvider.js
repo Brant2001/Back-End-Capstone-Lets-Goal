@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { UserProfileContext } from "./UserProfileProvider";
+import { UserProfileContext } from "../user/UserProfileProvider";
 
 export const ActionContext = React.createContext();
 
@@ -9,9 +9,10 @@ export const ActionProvider = (props) => {
 
     const apiUrl = '/api/action'
 
-    const getAllActions = () => {
+    const getActionsByGoalId = (id) => {
+        debugger
         return getToken().then((token) =>
-            fetch(apiUrl, {
+            fetch(apiUrl + `/getbygoal/${id}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -20,42 +21,6 @@ export const ActionProvider = (props) => {
             }).then(resp => resp.json())
                 .then(setActions));
     };
-
-    const addAction = (action) => {
-        return getToken().then((token) =>
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(action)
-            }).then(resp => resp.json()).then(getAllActions))
-    };
-
-    const updateAction = (action) => {
-        return getToken().then((token) =>
-            fetch(apiUrl + `${action.id}`, {
-                method: "PUT",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(action),
-            }).then(getAllActions));
-
-    }
-
-    const deleteAction = (id) => {
-        return getToken().then((token) =>
-            fetch(apiUrl + `/${id}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-            })).then(getAllActions);
-    }
 
     const getAction = (id) => {
         return getToken().then((token) =>
@@ -67,9 +32,46 @@ export const ActionProvider = (props) => {
             }).then(resp => resp.json()));
     };
 
+    const addAction = (action) => {
+        return getToken().then((token) =>
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(action)
+            }).then(resp => resp.json()).then(getActionsByGoalId(action.goalId)))
+    };
+
+    const updateAction = (action) => {
+        return getToken().then((token) =>
+            fetch(apiUrl + `${action.id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(action),
+            }).then(getActionsByGoalId(action.goalId)));
+
+    }
+
+    const deleteAction = (action) => {
+        return getToken().then((token) =>
+            fetch(apiUrl + `/${action.id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+            })).then(getActionsByGoalId(action.goalId));
+    }
+
+
     return (
         <ActionContext.Provider value={{
-            actions, getAllActions, addAction, deleteAction, getAction, getAllActions, updateAction
+            actions, getActionsByGoalId, addAction, getAction, updateAction, deleteAction
         }}>
             {props.children}
         </ActionContext.Provider>

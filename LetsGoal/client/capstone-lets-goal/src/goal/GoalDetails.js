@@ -3,10 +3,12 @@ import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { GoalContext } from './GoalProvider'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { format } from 'date-fns'
+import { ActionList } from '../action/ActionList';
 
 
 export const GoalDetails = () => {
     const [goal, setGoal] = useState()
+    const [actionList, setActionList] = useState(false)
     const [actionInput, setInput] = useState(false)
     const { getGoal } = useContext(GoalContext);
     const { id } = useParams()
@@ -17,14 +19,16 @@ export const GoalDetails = () => {
         getGoal(id).then(setGoal)
     }, [])
 
+    const displayActions = () => {
+        if (actionList === true) {
+            return <ActionList goalId={parseInt(id)} />
+        }
+    }
+
     // const displayInput = () => {
     //     if (actionInput === true) {
     //         return <ActionForm goalId={id} />
     //     }
-    // }
-
-    // const ViewActions = () => {
-    //     return history.push(`/actions/${id}`)
     // }
 
     if (!goal) {
@@ -67,17 +71,17 @@ export const GoalDetails = () => {
                     </div>
                 </div>
 
-                {/* <div className="actionBtns">
-                        <Button className="viewActionBtn" color="secondary"
-                            onClick={
-                                evt => {
-                                    evt.preventDefault()
-                                    ViewActions()
-                                }
-                            }>View Actions
+                <div className="actionBtns">
+                    <Button className="viewActionBtn" color="secondary"
+                        onClick={
+                            evt => {
+                                evt.preventDefault()
+                                setActionList(true)
+                            }
+                        }>View Actions
                         </Button>
 
-                        <Button type="submit"
+                    {/* <Button type="submit"
                             color="primary"
                             onClick={
                                 evt => {
@@ -87,12 +91,16 @@ export const GoalDetails = () => {
                             }
                             className="addActionBtn">
                             Add Action
-                        </Button>
-                    </div>
+                        </Button> */}
+                </div>
 
-                    <div>
-                        {displayInput()}
-                    </div> */}
+                <div>
+                    {displayActions()}
+                </div>
+
+                {/* <div>
+                    {displayInput()}
+                </div> */}
             </div>
         </div>
     )

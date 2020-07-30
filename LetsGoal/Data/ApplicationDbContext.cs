@@ -13,7 +13,7 @@ namespace LetsGoal.Data
 
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<Goal> Goal { get; set; }
-        public DbSet<LetsGoal.Models.Action> Action { get; set; }
+        public DbSet<Models.Action> Action { get; set; }
         public DbSet<GoalType> GoalType { get; set; }
         public DbSet<Difficulty> Difficulty { get; set; }
 

@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from "react";
-import { ActionContext } from "../providers/ActionProvider";
+import { ActionContext } from "./ActionProvider";
 import { Action } from "./Action";
 
-export const ActionList = () => {
+export const ActionList = ({ goalId }) => {
 
-    const { actions, getAllActions } = useContext(ActionContext);
+    const { actions, getActionsByGoalId } = useContext(ActionContext);
 
     useEffect(() => {
-        getAllActions();
+        getActionsByGoalId(goalId);
     }, []);
-
+    debugger
     return (
         <div className="container">
             <div className="row justify-content-center">

@@ -8,6 +8,7 @@ import { GoalProvider } from './goal/GoalProvider';
 import { UserGoalProvider } from './goal/UserGoalProvider';
 import { GoalTypeProvider } from './goalType/GoalTypeProvider';
 import { DifficultyProvider } from './difficulty/DifficultyProvider';
+import { ActionProvider } from './action/ActionProvider';
 
 function App() {
   return (
@@ -16,10 +17,12 @@ function App() {
         <UserGoalProvider>
           <GoalTypeProvider>
             <DifficultyProvider>
-              <GoalProvider>
-                <Header />
-                <ApplicationViews />
-              </GoalProvider>
+              <ActionProvider>
+                <GoalProvider>
+                  <Header />
+                  <ApplicationViews />
+                </GoalProvider>
+              </ActionProvider>
             </DifficultyProvider>
           </GoalTypeProvider>
         </UserGoalProvider>
