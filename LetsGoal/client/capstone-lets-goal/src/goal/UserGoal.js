@@ -1,11 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom"
 import { format } from 'date-fns'
 import { Button } from "reactstrap";
 import { UserGoalContext } from "./UserGoalProvider";
+import { EditGoalForm } from "./EditGoalForm";
 
 export const UserGoal = ({ userGoal }) => {
     const { deleteGoal } = useContext(UserGoalContext)
+    const [actionInput, setInput] = useState(false)
+
+
+    const displayInput = () => {
+        if (actionInput === true) {
+            return <EditGoalForm goal={userGoal} />
+        }
+    }
 
     return (
         <div className="m-4 goal">
@@ -21,8 +30,10 @@ export const UserGoal = ({ userGoal }) => {
                 <p>Completed Status: {userGoal.isComplete === true ? "True" : "False"}</p>
             </div>
             <div>
-                <Button onClick={evt => { evt.preventDefault(); deleteGoal(userGoal) }}>Delete</Button>
+                <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(userGoal) }}>Delete</Button>
+                <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
             </div>
+            <div>{displayInput()}</div>
         </div>
     );
 };
