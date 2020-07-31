@@ -42,7 +42,7 @@ namespace LetsGoal.Controllers
             return Ok(action);
         }
 
-        [HttpGet("/getbygoal/{id}")]
+        [HttpGet("getbygoal/{id}")]
         public IActionResult GetByGoalId(int id)
         {
             return Ok(_actionRepository.GetByGoalId(id));

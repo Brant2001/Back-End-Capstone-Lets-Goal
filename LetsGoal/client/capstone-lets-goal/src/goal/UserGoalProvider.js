@@ -9,9 +9,9 @@ export const UserGoalProvider = (props) => {
 
     const apiUrl = '/api/goal'
 
-    const getAllGoalsByUser = (id) => {
+    const getAllGoalsByUser = () => {
         getToken().then((token) =>
-            fetch(apiUrl + `/getbyuser/${id}`, {
+            fetch(apiUrl + `/getbyuser`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

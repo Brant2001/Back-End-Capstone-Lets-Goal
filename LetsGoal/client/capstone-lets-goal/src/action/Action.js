@@ -14,7 +14,7 @@ export const Action = ({ action }) => {
                     </Link>
                 </div>
                 <div className="actionItems">
-                    <p>Created: {format(new Date(action.createDateTime), 'MM/dd/yyyy')}</p>
+                    <p>Created: {format(new Date(action.dateCreated), 'MM/dd/yyyy')}</p>
                 </div>
             </CardBody>
         </Card>

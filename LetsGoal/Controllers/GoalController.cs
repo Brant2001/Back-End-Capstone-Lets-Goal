@@ -43,10 +43,12 @@ namespace LetsGoal.Controllers
             return Ok(goal);
         }
 
-        [HttpGet("getbyuser/{id}")]
-        public IActionResult GetByUser(int id)
+        [HttpGet("getbyuser")]
+        public IActionResult GetByUser()
         {
-            return Ok(_goalRepository.GetByUserProfileId(id));
+            var currentUser = GetCurrentUserProfile();
+
+            return Ok(_goalRepository.GetByUserProfileId(currentUser.Id));
         }
 
         [HttpPost]

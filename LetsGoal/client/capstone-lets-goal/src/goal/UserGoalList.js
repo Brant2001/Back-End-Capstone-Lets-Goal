@@ -7,10 +7,9 @@ import GoalForm from "./GoalForm";
 export const UserGoalList = () => {
     const [actionInput, setInput] = useState(false)
     const { userGoals, getAllGoalsByUser } = useContext(UserGoalContext);
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     useEffect(() => {
-        getAllGoalsByUser(userProfile.id)
+        getAllGoalsByUser()
     }, []);
 
     const displayInput = () => {

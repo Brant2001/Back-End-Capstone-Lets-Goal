@@ -9,7 +9,7 @@ export const ActionList = ({ goalId }) => {
     useEffect(() => {
         getActionsByGoalId(goalId);
     }, []);
-    debugger
+
     return (
         <div className="container">
             <div className="row justify-content-center">

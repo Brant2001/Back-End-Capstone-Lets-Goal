@@ -10,7 +10,6 @@ export const ActionProvider = (props) => {
     const apiUrl = '/api/action'
 
     const getActionsByGoalId = (id) => {
-        debugger
         return getToken().then((token) =>
             fetch(apiUrl + `/getbygoal/${id}`, {
                 method: "GET",

@@ -21,7 +21,7 @@ export const GoalDetails = () => {
 
     const displayActions = () => {
         if (actionList === true) {
-            return <ActionList goalId={parseInt(id)} />
+            return <ActionList goalId={id} />
         }
     }
 
