@@ -1,35 +1,35 @@
 import React, { useEffect, useContext, useState } from 'react'
-import { Card, CardImg, CardBody, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import { GoalContext } from './GoalProvider'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { format } from 'date-fns'
-import { ActionList } from '../action/ActionList';
+import { ActionDashboard } from '../action/ActionDashboard';
+import { ActionForm } from '../action/ActionForm';
 
 
 export const GoalDetails = () => {
     const [goal, setGoal] = useState()
-    const [actionList, setActionList] = useState(false)
+    const [actionDash, setActionDash] = useState(false)
     const [actionInput, setInput] = useState(false)
     const { getGoal } = useContext(GoalContext);
     const { id } = useParams()
-    const history = useHistory();
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     useEffect(() => {
         getGoal(id).then(setGoal)
     }, [])
 
-    const displayActions = () => {
-        if (actionList === true) {
-            return <ActionList goalId={id} />
+    const displayActionDash = () => {
+        if (actionDash === true) {
+            return <ActionDashboard goalId={id} />
         }
     }
 
-    // const displayInput = () => {
-    //     if (actionInput === true) {
-    //         return <ActionForm goalId={id} />
-    //     }
-    // }
+    const displayInput = () => {
+        if (actionInput === true) {
+            return <ActionForm goalId={id} />
+        }
+    }
 
     if (!goal) {
         return null
@@ -37,7 +37,7 @@ export const GoalDetails = () => {
 
     return (
         <div className='col-sm-12 col-lg-6'>
-            <div className="backLink">
+            <div className="goalLink">
                 {
                     (goal.userProfileId === userProfile.id)
                         ? <Link className="backLink" to={'/'}><Button className="backBtn secondary">Back to My Goals</Button></Link>
@@ -66,7 +66,7 @@ export const GoalDetails = () => {
                         {goal.difficulty.title} <br /><br />
                     </div>
                     <div>
-                        Date Published: <br />
+                        Date Created: <br />
                         {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
                     </div>
                 </div>
@@ -74,33 +74,40 @@ export const GoalDetails = () => {
                 <div className="actionBtns">
                     <Button className="viewActionBtn" color="secondary"
                         onClick={
-                            evt => {
-                                evt.preventDefault()
-                                setActionList(true)
+                            () => {
+                                setActionDash(true)
                             }
                         }>View Actions
-                        </Button>
+                    </Button>
 
-                    {/* <Button type="submit"
-                            color="primary"
-                            onClick={
-                                evt => {
-                                    evt.preventDefault()
-                                    setInput(true)
-                                }
+                    <Button className="hideActionBtn" color="secondary"
+                        onClick={
+                            () => {
+                                setActionDash(false)
                             }
-                            className="addActionBtn">
-                            Add Action
-                        </Button> */}
+                        }>Hide Actions
+                    </Button>
+
+                    <Button type="submit"
+                        color="primary"
+                        onClick={
+                            evt => {
+                                evt.preventDefault()
+                                setInput(true)
+                            }
+                        }
+                        className="addActionBtn">
+                        Add Action
+                    </Button>
                 </div>
 
                 <div>
-                    {displayActions()}
+                    {displayActionDash()}
                 </div>
 
-                {/* <div>
+                <div>
                     {displayInput()}
-                </div> */}
+                </div>
             </div>
         </div>
     )
