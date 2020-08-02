@@ -9,11 +9,11 @@ export const Action = ({ setActiveView, action }) => {
     const [actionInput, setInput] = useState(false)
 
 
-    // const displayInput = () => {
-    //     if (actionInput === true) {
-    //         return <EditActionForm action={action} />
-    //     }
-    // }
+    const displayInput = () => {
+        if (actionInput === true) {
+            return <EditActionForm action={action} />
+        }
+    }
 
     return (
         <div className="m-4 action">
@@ -27,9 +27,9 @@ export const Action = ({ setActiveView, action }) => {
             </div>
             <div>
                 <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action) }}>Delete</Button>
-                {/* <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button> */}
+                <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
             </div>
-            {/* <div>{displayInput()}</div> */}
+            <div>{displayInput()}</div>
         </div>
     );
 };
