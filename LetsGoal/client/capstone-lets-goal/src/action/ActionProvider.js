@@ -45,7 +45,7 @@ export const ActionProvider = (props) => {
 
     const updateAction = (action) => {
         return getToken().then((token) =>
-            fetch(apiUrl + `${action.id}`, {
+            fetch(apiUrl + `/${action.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
