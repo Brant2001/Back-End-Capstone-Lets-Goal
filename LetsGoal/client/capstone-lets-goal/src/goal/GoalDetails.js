@@ -53,60 +53,67 @@ export const GoalDetails = () => {
                             : <p>Anonymous user</p>
                     }
                 </div>
-
                 <div className="goalItems">
-                    Description: <br />
-                    {goal.description} <br /><br />
                     <div>
-                        Goal Type: <br />
-                        {goal.goalType.title} <br /><br />
+                        Description : <br />
+                        {goal.description} <br /><br />
                     </div>
-                    <div>
-                        Difficulty: <br />
-                        {goal.difficulty.title} <br /><br />
-                    </div>
-                    <div>
-                        Date Created: <br />
-                        {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
-                    </div>
-                </div>
+                    {
+                        (goal.userProfileId === userProfile.id)
+                            ? <div>
+                                <div>
+                                    Goal Type: <br />
+                                    {goal.goalType.title} <br /><br />
+                                </div>
+                                <div>
+                                    Difficulty: <br />
+                                    {goal.difficulty.title} <br /><br />
+                                </div>
+                                <div>
+                                    Date Created: <br />
+                                    {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
+                                </div>
 
-                <div className="actionBtns">
-                    <Button className="viewActionBtn" color="secondary"
-                        onClick={
-                            () => {
-                                setActionDash(true)
-                            }
-                        }>View Actions
-                    </Button>
+                                <div className="actionBtns">
+                                    <Button className="viewActionBtn" color="secondary"
+                                        onClick={
+                                            () => {
+                                                setActionDash(true)
+                                            }
+                                        }>View Actions
+                                    </Button>
 
-                    <Button className="hideActionBtn" color="secondary"
-                        onClick={
-                            () => {
-                                setActionDash(false)
-                            }
-                        }>Hide Actions
-                    </Button>
+                                    <Button className="hideActionBtn" color="secondary"
+                                        onClick={
+                                            () => {
+                                                setActionDash(false)
+                                            }
+                                        }>Hide Actions
+                                    </Button>
 
-                    <Button type="submit"
-                        color="primary"
-                        onClick={
-                            evt => {
-                                evt.preventDefault()
-                                setInput(true)
-                            }
-                        }
-                        className="addActionBtn">
-                        Add Action
-                    </Button>
-                </div>
+                                    <Button type="submit"
+                                        color="primary"
+                                        onClick={
+                                            evt => {
+                                                evt.preventDefault()
+                                                setInput(true)
+                                            }
+                                        }
+                                        className="addActionBtn">
+                                        Add Action
+                                    </Button>
+                                </div>
 
-                <div>
-                    {displayActionDash()}
-                </div>
+                                <div>
+                                    {displayActionDash()}
+                                </div>
 
-                <div>
-                    {displayInput()}
+                                <div>
+                                    {displayInput()}
+                                </div>
+                            </div>
+                            : <div></div>
+                    }
                 </div>
             </div>
         </div>
