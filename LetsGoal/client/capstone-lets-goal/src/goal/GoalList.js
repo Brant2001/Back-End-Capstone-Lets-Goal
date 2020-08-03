@@ -3,7 +3,6 @@ import { GoalContext } from "./GoalProvider";
 import { Goal } from "./Goal";
 
 export const GoalList = () => {
-
     const { goals, getAllGoals } = useContext(GoalContext);
 
     useEffect(() => {
@@ -12,11 +11,13 @@ export const GoalList = () => {
 
     return (
         <div className="container">
-            <div className="row justify-content-center">
-                <div className="cards-column">
-                    {goals.map((goal) => (
-                        <Goal key={goal.id} goal={goal} />
-                    ))}
+            <div className="goalList">
+                <div className="goalList_btns">
+                    {
+                        goals.map((goal) => (
+                            <Goal key={goal.id} goal={goal} />
+                        ))
+                    }
                 </div>
             </div>
         </div>

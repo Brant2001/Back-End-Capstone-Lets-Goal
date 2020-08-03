@@ -6,7 +6,6 @@ import { ActionContext } from './ActionProvider'
 export const ActionForm = (goalId) => {
     const { addAction } = useContext(ActionContext)
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
-    const history = useHistory()
 
     const title = useRef('title')
     const description = useRef('description')

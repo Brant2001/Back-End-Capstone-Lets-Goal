@@ -14,7 +14,7 @@ export const Action = ({ setActiveView, action }) => {
             return <EditActionForm action={action} />
         }
     }
-
+    debugger
     return (
         <div className="m-4 action">
             <div className="actionTitle">
