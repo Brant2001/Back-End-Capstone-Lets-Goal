@@ -34,7 +34,7 @@ export const GoalDetails = () => {
     if (!goal) {
         return null
     }
-
+    debugger
     return (
         <div className='col-sm-12 col-lg-6'>
             <div className="goalLink">

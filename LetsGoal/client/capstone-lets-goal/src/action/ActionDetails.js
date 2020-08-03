@@ -17,7 +17,7 @@ export const ActionDetails = ({ currentAction, setActiveView }) => {
     if (!action || userProfile.id != action.userProfileId) {
         return null
     }
-
+    debugger
     return (
         <div className='col-sm-12 col-lg-6'>
             <div className="actionLink">
