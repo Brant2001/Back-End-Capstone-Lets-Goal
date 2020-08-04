@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "./user/UserProfileProvider";
 import Login from "./auth/Login";
@@ -9,12 +9,13 @@ import { GoalDetails } from "./goal/GoalDetails";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
+    const [goalStatus, setGoalStatus] = useState("incomplete")
 
     return (
         <main>
             <Switch>
                 <Route path="/" exact>
-                    {isLoggedIn ? <UserGoalList /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <UserGoalList goalStatus={goalStatus} setGoalStatus={setGoalStatus} /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/goal" exact>
@@ -22,7 +23,7 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/goal/:id" exact>
-                    {isLoggedIn ? <GoalDetails /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <GoalDetails goalStatus={goalStatus} setGoalStatus={setGoalStatus} /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">

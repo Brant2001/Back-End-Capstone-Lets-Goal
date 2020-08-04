@@ -6,18 +6,21 @@ import { ActionContext } from './ActionProvider';
 
 
 export const ActionDetails = ({ currentAction, setActiveView }) => {
+
     const [action, setAction] = useState()
     const { getAction } = useContext(ActionContext);
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     useEffect(() => {
-        getAction(currentAction.id).then(setAction)
+        getAction(currentAction.id).then(t => {
+            setAction(t)
+        })
     }, [])
 
-    if (!action || userProfile.id != action.userProfileId) {
+    if (!action || userProfile.id != action.goal.userProfileId) {
+        console.log(action, userProfile)
         return null
     }
-    debugger
     return (
         <div className='col-sm-12 col-lg-6'>
             <div className="actionLink">

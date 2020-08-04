@@ -7,11 +7,11 @@ import { ActionDashboard } from '../action/ActionDashboard';
 import { ActionForm } from '../action/ActionForm';
 
 
-export const GoalDetails = () => {
+export const GoalDetails = ({ setGoalStatus }) => {
     const [goal, setGoal] = useState()
     const [actionDash, setActionDash] = useState(false)
     const [actionInput, setInput] = useState(false)
-    const { getGoal } = useContext(GoalContext);
+    const { getGoal, updateGoal } = useContext(GoalContext);
     const { id } = useParams()
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
@@ -31,17 +31,43 @@ export const GoalDetails = () => {
         }
     }
 
+    const completeGoal = (goal) => {
+        return updateGoal({
+            id: parseInt(goal.id),
+            title: goal.title,
+            description: goal.description,
+            goalTypeId: goal.goalTypeId,
+            difficultyId: goal.difficultyId,
+            dateCreated: goal.dateCreated,
+            userProfileId: goal.userProfile.id,
+            isComplete: true
+        })
+    }
+
+    const incompleteGoal = (goal) => {
+        return updateGoal({
+            id: parseInt(goal.id),
+            title: goal.title,
+            description: goal.description,
+            goalTypeId: goal.goalTypeId,
+            difficultyId: goal.difficultyId,
+            dateCreated: goal.dateCreated,
+            userProfileId: goal.userProfile.id,
+            isComplete: false
+        })
+    }
+
     if (!goal) {
         return null
     }
-    debugger
+
     return (
         <div className='col-sm-12 col-lg-6'>
             <div className="goalLink">
                 {
                     (goal.userProfileId === userProfile.id)
-                        ? <Link className="backLink" to={'/'}><Button className="backBtn secondary">Back to My Goals</Button></Link>
-                        : <Link className="backLink" to={'/goal'}><Button className="backBtn secondary">Back to All Goals</Button></Link>
+                        ? <Link className="backLink" to={'/'} onClick={() => setGoalStatus("complete")}><Button className="backBtn secondary">Back to My Goals</Button></Link>
+                        : <Link className="backLink" to={'/goal'} onClick={() => setGoalStatus("incomplete")}><Button className="backBtn secondary">Back to All Goals</Button></Link>
                 }
             </div>
             <div className="m-4 goalDetails">
@@ -73,6 +99,12 @@ export const GoalDetails = () => {
                                     Date Created: <br />
                                     {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
                                 </div>
+                                {
+                                    (goal.isComplete === false)
+                                        ? <Button className="completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal) }}>Complete</Button>
+                                        : <Button className="incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal) }}>Not Complete</Button>
+
+                                }
 
                                 <div className="actionBtns">
                                     <Button className="viewActionBtn" color="secondary"
