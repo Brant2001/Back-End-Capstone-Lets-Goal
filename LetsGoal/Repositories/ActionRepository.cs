@@ -26,8 +26,9 @@ namespace LetsGoal.Repositories
         {
             return _context.Action
                 .Include(a => a.Goal)
+                .ThenInclude(g => g.actions)
                 .Include(a => a.Difficulty)
-                .FirstOrDefault(p => p.Id == id);
+                .FirstOrDefault(a => a.Id == id);
         }
 
         public List<Models.Action> GetByGoalId(int id)
