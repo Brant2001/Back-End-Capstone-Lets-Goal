@@ -13,7 +13,7 @@ export default props => {
     const title = useRef('title')
     const description = useRef('description')
     const goalType = useRef('goalType')
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
     const difficulty = useRef('difficulty')
 
     const constructNewGoal = () => {

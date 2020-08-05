@@ -7,7 +7,7 @@ import { ActionContext } from './ActionProvider';
 export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setActionStatus }) => {
     const [action, setAction] = useState()
     const { getAction, updateAction } = useContext(ActionContext);
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
     useEffect(() => {
         getAction(currentAction.id).then(act => {
@@ -42,7 +42,7 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
     if (!action || userProfile.id != action.goal.userProfileId) {
         return null
     }
-    debugger
+
     return (
         <div className='col-sm-12 col-lg-6'>
             <div className="actionLink">
@@ -75,8 +75,8 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
                     </div>
                     {
                         (action.isComplete === false)
-                            ? <Button className="completeActionBtn" color="secondary" onClick={() => { completeAction(action); setActionStatus("complete") }}>Complete</Button>
-                            : <Button className="incompleteActionBtn" color="secondary" onClick={() => { incompleteAction(action); setActionStatus("incomplete") }}>Not Complete</Button>
+                            ? <Button className="completeActionBtn" color="secondary" onClick={() => { completeAction(action); setActionStatus("complete"); setActiveView("actionList") }}>Complete</Button>
+                            : <Button className="incompleteActionBtn" color="secondary" onClick={() => { incompleteAction(action); setActionStatus("incomplete"); setActiveView("actionList") }}>Not Complete</Button>
 
                     }
                 </div>

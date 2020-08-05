@@ -3,8 +3,9 @@ import { ActionList } from "./ActionList"
 import { ActionDetails } from "./ActionDetails";
 import { ActionForm } from "./ActionForm";
 
-export const ActionDashboard = ({ goalId, actionStatus, setActionStatus }) => {
+export const ActionDashboard = ({ goalId }) => {
     const [components, setComponents] = useState()
+    const [actionStatus, setActionStatus] = useState("incomplete")
     const [activeView, setActiveView] = useState({
         view: "actionList",
         currentAction: {}
@@ -12,9 +13,10 @@ export const ActionDashboard = ({ goalId, actionStatus, setActionStatus }) => {
 
 
     // Components needed to display Actions
-    const showActionList = () => (
-        <ActionList setActiveView={setActiveView} goalId={goalId} actionStatus={actionStatus} setActionStatus={setActionStatus} />
-    )
+    const showActionList = () => {
+        console.log(actionStatus)
+        return < ActionList setActiveView={setActiveView} goalId={goalId} actionStatus={actionStatus} setActionStatus={setActionStatus} />
+    }
 
     // Components needed to display Action Details
     const showActionDetails = () => (
@@ -45,7 +47,8 @@ export const ActionDashboard = ({ goalId, actionStatus, setActionStatus }) => {
         // else if (activeView.view === "logs") {
         //     setComponents(showLogs)
         // }
-    }, [activeView])
+        console.log(activeView)
+    }, [activeView, actionStatus])
 
     return (
         // <Link className="viewActionBtn" color="secondary"

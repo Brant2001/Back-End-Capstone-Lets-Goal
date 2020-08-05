@@ -5,6 +5,7 @@ import { Button } from "reactstrap";
 
 export const ActionList = ({ setActiveView, goalId, actionStatus, setActionStatus }) => {
     const { actions, getActionsByGoalId } = useContext(ActionContext);
+    console.log(actionStatus)
     const incompletedActions = actions.filter(ica => ica.isComplete === false)
     const completedActions = actions.filter(ca => ca.isComplete === true)
 
@@ -27,7 +28,7 @@ export const ActionList = ({ setActiveView, goalId, actionStatus, setActionStatu
     useEffect(() => {
         getActionsByGoalId(goalId);
     }, []);
-    
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -37,13 +38,13 @@ export const ActionList = ({ setActiveView, goalId, actionStatus, setActionStatu
                             ? <Button
                                 className="viewCompleteActionsBtn"
                                 color="secondary"
-                                onClick={() => { setActionStatus("complete") }}>
+                                onClick={() => { setActionStatus("complete"); console.log(actionStatus) }}>
                                 View Completed Actions
                               </Button>
                             : <Button
                                 className="viewIncompleteActionsBtn"
                                 color="secondary"
-                                onClick={() => { setActionStatus("incomplete") }}>
+                                onClick={() => { setActionStatus("incomplete"); console.log(actionStatus) }}>
                                 View Incompleted Actions
                               </Button>
                     }

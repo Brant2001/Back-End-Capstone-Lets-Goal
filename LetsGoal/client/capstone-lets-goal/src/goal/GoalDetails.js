@@ -12,11 +12,10 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
     const [goal, setGoal] = useState()
     const [actionDash, setActionDash] = useState(false)
     const [editGoalInput, setEditGoalInput] = useState(false)
-    const [actionStatus, setActionStatus] = useState("incomplete")
     const { getGoal, updateGoal, deleteGoal } = useContext(GoalContext);
     const { id } = useParams()
     const history = useHistory();
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
     useEffect(() => {
         getGoal(id).then(setGoal)
@@ -24,7 +23,7 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
 
     const displayActionDash = () => {
         if (actionDash === true) {
-            return <ActionDashboard goalId={id} actionStatus={actionStatus} setActionStatus={setActionStatus} />
+            return <ActionDashboard goalId={id} />
         }
     }
 

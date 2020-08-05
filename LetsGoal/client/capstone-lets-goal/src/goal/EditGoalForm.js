@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 import { GoalTypeContext } from "../goalType/GoalTypeProvider";
 import { DifficultyContext } from "../difficulty/DifficultyProvider";
 
-export const EditGoalForm = (props) => {
+export const EditGoalForm = ({ goal, toggle }) => {
     const { updateGoal } = useContext(GoalContext);
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
-    const [goalUpdate, setGoal] = useState(props.goal);
+    const [goalUpdate, setGoal] = useState(goal);
     const history = useHistory();
 
     const handleControlledInputChange = (event) => {
@@ -26,7 +26,7 @@ export const EditGoalForm = (props) => {
     const editGoal = () => {
         goalUpdate.goalTypeId = parseInt(goalUpdate.goalTypeId);
         goalUpdate.difficultyId = parseInt(goalUpdate.difficultyId);
-        updateGoal(goalUpdate).then(props.toggle).then(history.push(`/goal/${props.goal.id}`));
+        updateGoal(goalUpdate).then(toggle).then(history.push(`/goal/${goal.id}`));
     };
 
     return (
@@ -43,7 +43,7 @@ export const EditGoalForm = (props) => {
                                 autoFocus
                                 className="form-control"
                                 placeholder="Edit Goal Title"
-                                defaultValue={props.goal.title}
+                                defaultValue={goal.title}
                                 onChange={handleControlledInputChange}
                             />
                             Description:
@@ -56,7 +56,7 @@ export const EditGoalForm = (props) => {
                                 autoFocus
                                 className="form-control"
                                 placeholder="Edit description"
-                                defaultValue={props.goal.description}
+                                defaultValue={goal.description}
                                 onChange={handleControlledInputChange}
                             />
                             Goal Type:
@@ -64,7 +64,7 @@ export const EditGoalForm = (props) => {
                                 name="goalTypeId"
                                 required
                                 className="form-control"
-                                defaultValue={props.goal.goalType.title}
+                                defaultValue={goal.goalType.title}
                                 onChange={handleControlledInputChange}
                             >
                                 {goalTypes.map((gt) => (
@@ -79,7 +79,7 @@ export const EditGoalForm = (props) => {
                                 name="difficultyId"
                                 required
                                 className="form-control"
-                                defaultValue={props.goal.difficulty.title}
+                                defaultValue={goal.difficulty.title}
                                 onChange={handleControlledInputChange}
                             >
                                 {difficulties.map((gt) => (
@@ -102,7 +102,7 @@ export const EditGoalForm = (props) => {
                 >
                     Save Updates
         </Button>
-                <Button onClick={props.toggle}>Cancel</Button>
+                <Button onClick={toggle}>Cancel</Button>
             </Form>
         </>
     );
