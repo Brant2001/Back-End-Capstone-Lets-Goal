@@ -21,7 +21,6 @@ export const UserGoalProvider = (props) => {
     };
 
     const addGoal = (goal) => {
-        debugger
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",

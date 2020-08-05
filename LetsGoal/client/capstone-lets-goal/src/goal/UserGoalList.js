@@ -56,6 +56,9 @@ export const UserGoalList = ({ goalStatus, setGoalStatus }) => {
                 }
             </div>
             <div>
+                {
+                    (goalStatus === "incomplete") ? <h4>Incompleted Goals</h4> : <h4>Completed Goals</h4>
+                }
                 {displayGoals()}
             </div>
             <Button type="submit"

@@ -1,9 +1,8 @@
 import React, { useContext, useRef, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import { DifficultyContext } from '../difficulty/DifficultyProvider'
 import { ActionContext } from './ActionProvider'
 
-export const ActionForm = (goalId) => {
+export const ActionForm = ({ goalId, setActiveView }) => {
     const { addAction } = useContext(ActionContext)
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
 
@@ -17,19 +16,20 @@ export const ActionForm = (goalId) => {
             title: title.current.value,
             description: description.current.value,
             dateCreated: new Date(),
-            goalId: parseInt(goalId.goalId),
+            goalId: parseInt(goalId),
             difficultyId: parseInt(difficulty.current.value),
+            isComplete: false
         }
 
         console.log(newActionObject)
-        return addAction(newActionObject)
+        return addAction(newActionObject).then(setActiveView({ view: "actionList", currentAction: {} }))
     }
 
 
     useEffect(() => {
         getAllDifficulties();
     }, []);
-    debugger
+
     return (
         <div className="newActionForm">
             <form className='actionFormCard'>
