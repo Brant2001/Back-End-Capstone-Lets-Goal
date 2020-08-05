@@ -3,9 +3,9 @@ import { ActionList } from "./ActionList"
 import { ActionDetails } from "./ActionDetails";
 import { ActionForm } from "./ActionForm";
 
-export const ActionDashboard = ({ goalId }) => {
+export const ActionDashboard = ({ goalId, goalStatus }) => {
     const [components, setComponents] = useState()
-    const [actionStatus, setActionStatus] = useState("incomplete")
+    const [actionStatus, setActionStatus] = useState(goalStatus)
     const [activeView, setActiveView] = useState({
         view: "actionList",
         currentAction: {}

@@ -23,6 +23,7 @@ namespace LetsGoal.Repositories
                 .Include(p => p.GoalType)
                 .Include(p => p.Difficulty)
                 .Include(p => p.actions)
+                .Where(p => p.UserProfile.IsPublic == true)
                 .OrderBy(p => p.GoalType.Id)
                 .ToList();
         }
@@ -77,26 +78,26 @@ namespace LetsGoal.Repositories
                 : query.OrderBy(p => p.DateCreated).ToList();
         }
 
-        public void Add(Goal post)
+        public void Add(Goal goal)
         {
-            _context.Add(post);
+            _context.Add(goal);
             _context.SaveChanges();
         }
 
-        public void Update(Goal post)
+        public void Update(Goal goal)
         {
-            _context.Entry(post).State = EntityState.Modified;
+            _context.Entry(goal).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            // Remove related comments first
-            var relatedComments = _context.Action.Where(c => c.GoalId == id);
-            _context.Action.RemoveRange(relatedComments);
+            // Remove related actions first
+            var relatedActions = _context.Action.Where(c => c.GoalId == id);
+            _context.Action.RemoveRange(relatedActions);
 
-            var post = GetById(id);
-            _context.Goal.Remove(post);
+            var goal = GetById(id);
+            _context.Goal.Remove(goal);
             _context.SaveChanges();
         }
     }

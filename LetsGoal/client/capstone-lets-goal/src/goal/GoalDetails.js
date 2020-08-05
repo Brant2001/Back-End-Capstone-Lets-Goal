@@ -23,7 +23,7 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
 
     const displayActionDash = () => {
         if (actionDash === true) {
-            return <ActionDashboard goalId={id} />
+            return <ActionDashboard goalId={id} goalStatus={goalStatus} />
         }
     }
 
@@ -78,12 +78,12 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
                     {
                         (goal.userProfileId === userProfile.id)
                             ? <h5>{goal.userProfile.fullName}</h5>
-                            : <p>Anonymous user</p>
+                            : <div></div>
                     }
                 </div>
                 <div className="goalItems">
                     <div>
-                        Description : <br />
+                        <h5>Description :</h5>
                         {goal.description} <br /><br />
                     </div>
                     {
