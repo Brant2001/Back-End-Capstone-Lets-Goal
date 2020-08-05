@@ -5,7 +5,6 @@ import { Button } from "reactstrap";
 
 export const ActionList = ({ setActiveView, goalId, actionStatus, setActionStatus }) => {
     const { actions, getActionsByGoalId } = useContext(ActionContext);
-    console.log(actionStatus)
     const incompletedActions = actions.filter(ica => ica.isComplete === false)
     const completedActions = actions.filter(ca => ca.isComplete === true)
 

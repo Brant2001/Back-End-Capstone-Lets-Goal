@@ -2,18 +2,21 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Button } from "reactstrap";
 import { format } from 'date-fns'
 import { ActionContext } from './ActionProvider';
+import { EditActionForm } from './EditActionForm';
 
 
 export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setActionStatus }) => {
     const [action, setAction] = useState()
+    const [actionInput, setInput] = useState(false)
+    const { deleteAction } = useContext(ActionContext)
     const { getAction, updateAction } = useContext(ActionContext);
     const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
-    useEffect(() => {
-        getAction(currentAction.id).then(act => {
-            setAction(act)
-        })
-    }, [])
+    const displayInput = () => {
+        if (actionInput === true) {
+            return <EditActionForm action={action} />
+        }
+    }
 
     const completeAction = (action) => {
         return updateAction({
@@ -39,6 +42,12 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
         })
     }
 
+    useEffect(() => {
+        getAction(currentAction.id).then(act => {
+            setAction(act)
+        })
+    }, [])
+
     if (!action || userProfile.id != action.goal.userProfileId) {
         return null
     }
@@ -55,11 +64,6 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
             <div className="m-4 actionDetails">
                 <div className="actionTitle">
                     <h3>{action.title}</h3>
-                    {
-                        (action.userProfileId === userProfile.id)
-                            ? <h5>{action.userProfile.fullName}</h5>
-                            : <p>Anonymous user</p>
-                    }
                 </div>
 
                 <div className="actionItems">
@@ -72,6 +76,13 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
                     <div>
                         Date Created: <br />
                         {format(new Date(action.dateCreated), 'MM/dd/yyyy')} <br /><br />
+                    </div>
+                    <div>
+                        <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action) }}>Delete</Button>
+                        <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
+                    </div>
+                    <div className="action_displayEditForm">
+                        {displayInput()}
                     </div>
                     {
                         (action.isComplete === false)

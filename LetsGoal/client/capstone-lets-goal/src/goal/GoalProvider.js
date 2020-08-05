@@ -46,9 +46,9 @@ export const GoalProvider = (props) => {
 
     }
 
-    const deleteGoal = (id) => {
+    const deleteGoal = (goal) => {
         return getToken().then((token) =>
-            fetch(apiUrl + `/${id}`, {
+            fetch(apiUrl + `/${goal.id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,

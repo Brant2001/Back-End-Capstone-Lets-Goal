@@ -10,8 +10,8 @@ export default function Register() {
     const [firstName, setFName] = useState();
     const [lastName, setLName] = useState();
     const [displayName, setDName] = useState();
-    const [image, setImage] = useState();
-    const [isPublic] = useState();
+    const [imageUrl, setImage] = useState();
+    const [isPublic, setIsPublic] = useState(false);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
@@ -21,8 +21,7 @@ export default function Register() {
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Try again.");
         } else {
-            const userProfile = { firstName, lastName, displayName, image, isPublic, email };
-            userProfile.isPublic = true
+            const userProfile = { firstName, lastName, displayName, imageUrl, isPublic, email };
             register(userProfile, password)
                 .then(() => history.push("/"));
         }
@@ -43,9 +42,16 @@ export default function Register() {
                     <Label htmlFor="displayName">DisplayName</Label>
                     <Input id="displayName" type="text" onChange={e => setDName(e.target.value)} />
                 </FormGroup>
+                {/* <Button className="publicBtn" onClick={() => setIsPublic(true)} >Public</Button>
+                <Button className="publicBtn" onClick={() => setIsPublic(false)} >Private</Button>
+                {profileStatus()} */}
                 <FormGroup>
                     <Label htmlFor="image">Profile Picture</Label>
                     <Input id="image" type="text" onChange={e => setImage(e.target.value)} />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="isPublic">Public</Label>
+                    <Input id="isPublic" type="checkbox" onChange={e => setIsPublic(e.target.checked)} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="email">Email</Label>
