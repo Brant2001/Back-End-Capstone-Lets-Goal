@@ -18,9 +18,9 @@ export const ActionDetails = ({ currentAction, setActiveView }) => {
     }, [])
 
     if (!action || userProfile.id != action.goal.userProfileId) {
-        console.log(action, userProfile)
         return null
     }
+
     return (
         <div className='col-sm-12 col-lg-6'>
             <div className="actionLink">

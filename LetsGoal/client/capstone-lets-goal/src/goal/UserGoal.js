@@ -9,13 +9,6 @@ export const UserGoal = ({ userGoal }) => {
     const { deleteGoal } = useContext(UserGoalContext)
     const [actionInput, setInput] = useState(false)
 
-
-    const displayInput = () => {
-        if (actionInput === true) {
-            return <EditGoalForm goal={userGoal} />
-        }
-    }
-
     return (
         <div className="m-4 goal">
             <div className="userGoalTitle">
@@ -29,11 +22,6 @@ export const UserGoal = ({ userGoal }) => {
                 <p>Difficulty: {userGoal.difficulty.title}</p>
                 <p>Completed Status: {userGoal.isComplete === true ? "True" : "False"}</p>
             </div>
-            <div>
-                <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(userGoal) }}>Delete</Button>
-                <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
-            </div>
-            <div>{displayInput()}</div>
         </div>
     );
 };

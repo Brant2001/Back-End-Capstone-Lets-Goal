@@ -8,13 +8,12 @@ export const Action = ({ setActiveView, action }) => {
     const { deleteAction } = useContext(ActionContext)
     const [actionInput, setInput] = useState(false)
 
-
     const displayInput = () => {
         if (actionInput === true) {
             return <EditActionForm action={action} />
         }
     }
-    
+
     return (
         <div className="m-4 action">
             <div className="actionTitle">
@@ -29,7 +28,9 @@ export const Action = ({ setActiveView, action }) => {
                 <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action) }}>Delete</Button>
                 <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
             </div>
-            <div>{displayInput()}</div>
+            <div className="action_displayEditForm">
+                {displayInput()}
+            </div>
         </div>
     );
 };

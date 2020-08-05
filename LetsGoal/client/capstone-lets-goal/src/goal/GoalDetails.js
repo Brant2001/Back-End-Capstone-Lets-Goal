@@ -1,18 +1,21 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Button } from "reactstrap";
 import { GoalContext } from './GoalProvider'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useHistory } from 'react-router-dom'
 import { format } from 'date-fns'
 import { ActionDashboard } from '../action/ActionDashboard';
 import { ActionForm } from '../action/ActionForm';
+import { EditGoalForm } from './EditGoalForm';
 
 
-export const GoalDetails = ({ setGoalStatus }) => {
+export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
     const [goal, setGoal] = useState()
     const [actionDash, setActionDash] = useState(false)
-    const [actionInput, setInput] = useState(false)
-    const { getGoal, updateGoal } = useContext(GoalContext);
+    const [editGoalInput, setEditGoalInput] = useState(false)
+    const [actionStatus, setActionStatus] = useState("incomplete")
+    const { getGoal, updateGoal, deleteGoal } = useContext(GoalContext);
     const { id } = useParams()
+    const history = useHistory();
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     useEffect(() => {
@@ -21,13 +24,13 @@ export const GoalDetails = ({ setGoalStatus }) => {
 
     const displayActionDash = () => {
         if (actionDash === true) {
-            return <ActionDashboard goalId={id} />
+            return <ActionDashboard goalId={id} actionStatus={actionStatus} setActionStatus={setActionStatus} />
         }
     }
 
-    const displayInput = () => {
-        if (actionInput === true) {
-            return <ActionForm goalId={id} />
+    const editGoalForm = () => {
+        if (editGoalInput === true) {
+            return <EditGoalForm goal={goal} />
         }
     }
 
@@ -66,8 +69,8 @@ export const GoalDetails = ({ setGoalStatus }) => {
             <div className="goalLink">
                 {
                     (goal.userProfileId === userProfile.id)
-                        ? <Link className="backLink" to={'/'} onClick={() => setGoalStatus("complete")}><Button className="backBtn secondary">Back to My Goals</Button></Link>
-                        : <Link className="backLink" to={'/goal'} onClick={() => setGoalStatus("incomplete")}><Button className="backBtn secondary">Back to All Goals</Button></Link>
+                        ? <Link className="backLink" to={'/'} ><Button className="backBtn secondary">Back to Goals</Button></Link>
+                        : <Link className="backLink" to={'/goal'} ><Button className="backBtn secondary">Back to All Goals</Button></Link>
                 }
             </div>
             <div className="m-4 goalDetails">
@@ -99,10 +102,15 @@ export const GoalDetails = ({ setGoalStatus }) => {
                                     Date Created: <br />
                                     {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
                                 </div>
+                                <div>
+                                    <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal) }}>Delete</Button>
+                                    <Button color="primary" onClick={evt => { evt.preventDefault(); setEditGoalInput(true) }}>Edit</Button>
+                                </div>
+                                <div>{editGoalForm()}</div>
                                 {
                                     (goal.isComplete === false)
-                                        ? <Button className="completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal) }}>Complete</Button>
-                                        : <Button className="incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal) }}>Not Complete</Button>
+                                        ? <Button className="completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal); setGoalStatus("complete"); history.push("/") }}>Complete</Button>
+                                        : <Button className="incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal); setGoalStatus("incomplete"); history.push("/") }}>Not Complete</Button>
 
                                 }
 
@@ -122,26 +130,10 @@ export const GoalDetails = ({ setGoalStatus }) => {
                                             }
                                         }>Hide Actions
                                     </Button>
-
-                                    <Button type="submit"
-                                        color="primary"
-                                        onClick={
-                                            evt => {
-                                                evt.preventDefault()
-                                                setInput(true)
-                                            }
-                                        }
-                                        className="addActionBtn">
-                                        Add Action
-                                    </Button>
                                 </div>
 
                                 <div>
                                     {displayActionDash()}
-                                </div>
-
-                                <div>
-                                    {displayInput()}
                                 </div>
                             </div>
                             : <div></div>
