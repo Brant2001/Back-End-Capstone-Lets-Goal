@@ -18,7 +18,7 @@ export const ActionDashboard = ({ goalId, actionStatus, setActionStatus }) => {
 
     // Components needed to display Action Details
     const showActionDetails = () => (
-        <ActionDetails currentAction={activeView.currentAction} setActiveView={setActiveView} />
+        <ActionDetails currentAction={activeView.currentAction} setActiveView={setActiveView} actionStatus={actionStatus} setActionStatus={setActionStatus} />
     )
 
     const showActionForm = () => (
@@ -46,7 +46,7 @@ export const ActionDashboard = ({ goalId, actionStatus, setActionStatus }) => {
         //     setComponents(showLogs)
         // }
     }, [activeView])
-    
+
     return (
         // <Link className="viewActionBtn" color="secondary"
         //     onClick={
