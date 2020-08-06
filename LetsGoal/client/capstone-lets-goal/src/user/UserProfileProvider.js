@@ -2,12 +2,13 @@ import React, { useState, useEffect, createContext } from "react";
 import { Spinner } from "reactstrap";
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { useHistory } from "react-router-dom";
 
 export const UserProfileContext = createContext();
 
 export function UserProfileProvider(props) {
     const apiUrl = "/api/userprofile";
-
+    const history = useHistory();
     const userProfile = localStorage.getItem("userProfile");
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
 
@@ -34,7 +35,8 @@ export function UserProfileProvider(props) {
     const register = (userProfile, password) => {
         return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
             .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
-            .then((savedUserProfile) => localStorage.setItem("userProfile", JSON.stringify(savedUserProfile)));
+            .then((savedUserProfile) => localStorage.setItem("userProfile", JSON.stringify(savedUserProfile)))
+            .then(history.push("/"));
     };
 
     const getToken = () => firebase.auth().currentUser.getIdToken();
@@ -50,7 +52,6 @@ export function UserProfileProvider(props) {
     };
 
     const saveUser = (userProfile) => {
-        debugger
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",

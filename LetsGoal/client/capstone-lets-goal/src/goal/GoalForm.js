@@ -28,7 +28,7 @@ export default props => {
         }
 
         console.log(newGoalObject)
-        return addGoal(newGoalObject).then(props)
+        return addGoal(newGoalObject).then(props).then(props.setInput(false))
     }
 
 

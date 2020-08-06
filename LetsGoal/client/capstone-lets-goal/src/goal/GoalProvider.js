@@ -42,7 +42,7 @@ export const GoalProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(goal),
-            }).then(getAllGoals));
+            }).then(() => getGoal(goal.id)));
 
     }
 

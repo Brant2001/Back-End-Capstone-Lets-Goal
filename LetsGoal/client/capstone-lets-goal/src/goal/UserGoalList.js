@@ -28,7 +28,7 @@ export const UserGoalList = ({ goalStatus, setGoalStatus }) => {
 
     const displayInput = () => {
         if (actionInput === true) {
-            return <GoalForm />
+            return <GoalForm setInput={setInput} />
         }
     }
 
