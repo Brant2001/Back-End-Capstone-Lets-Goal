@@ -1,16 +1,12 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom"
 import { format } from 'date-fns'
-import { Button } from "reactstrap";
-import { UserGoalContext } from "./UserGoalProvider";
-import { EditGoalForm } from "./EditGoalForm";
+
 
 export const UserGoal = ({ userGoal }) => {
-    const { deleteGoal } = useContext(UserGoalContext)
-    const [actionInput, setInput] = useState(false)
 
     return (
-        <div className="m-4 goal">
+        <div className="m-4 userGoal">
             <div className="userGoalTitle">
                 <Link to={`/goal/${userGoal.id}`}>
                     <h3>{userGoal.title}</h3>

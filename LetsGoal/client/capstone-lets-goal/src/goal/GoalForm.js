@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom'
 import { GoalTypeContext } from '../goalType/GoalTypeProvider'
 import { DifficultyContext } from '../difficulty/DifficultyProvider'
 import { UserGoalContext } from './UserGoalProvider'
+import { Button } from 'reactstrap'
 
-export default props => {
+export default ({ setActionInput, setGoalCompsSeen }) => {
     const { addGoal } = useContext(UserGoalContext)
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
@@ -28,7 +29,9 @@ export default props => {
         }
 
         console.log(newGoalObject)
-        return addGoal(newGoalObject).then(props).then(props.setInput(false))
+        return addGoal(newGoalObject)
+            .then(setActionInput(false))
+            .then(setGoalCompsSeen(true))
     }
 
 
@@ -40,7 +43,7 @@ export default props => {
     return (
         <div className="newGoalForm">
             <form className='goalFormCard'>
-                <h2 className='goalForm__title'>New Goal</h2>
+                <h4 className='goalForm__title'>New Goal</h4>
                 <fieldset>
                     <div className='form-group'>
                         <label htmlFor='goalTitle'>Goal Title: </label>
@@ -116,18 +119,28 @@ export default props => {
                         </select>
                     </div>
                 </fieldset>
+                <div className="goalForm_btns">
+                    <Button
+                        className="btns"
+                        color="primary"
+                        type='submit'
+                        onClick={evt => {
+                            evt.preventDefault() // Prevent browser from submitting the form
+                            constructNewGoal()
 
-                <button
-                    type='submit'
-                    onClick={evt => {
-                        evt.preventDefault() // Prevent browser from submitting the form
-                        constructNewGoal().then(p => history.push('/'))
+                        }}>Save Goal
+                    </Button>
 
-                    }}
-                    className='btn btn-primary'
-                >
-                    Save Goal
-      </button>
+                    <Button
+                        className="btns"
+                        color="secondary"
+                        onClick={() => {
+                            setActionInput(false)
+                            setGoalCompsSeen(true)
+                        }}>Cancel
+                    </Button>
+                </div>
+
             </form>
         </div>
     )
