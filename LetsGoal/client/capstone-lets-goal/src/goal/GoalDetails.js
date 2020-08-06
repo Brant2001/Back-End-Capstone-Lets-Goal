@@ -4,7 +4,6 @@ import { GoalContext } from './GoalProvider'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { format } from 'date-fns'
 import { ActionDashboard } from '../action/ActionDashboard';
-import { ActionForm } from '../action/ActionForm';
 import { EditGoalForm } from './EditGoalForm';
 
 

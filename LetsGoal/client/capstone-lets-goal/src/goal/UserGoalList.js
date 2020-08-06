@@ -39,40 +39,45 @@ export const UserGoalList = ({ goalStatus, setGoalStatus }) => {
     return (
         <div className="container">
             <div className="goalList_btns">
-                {
-                    (goalStatus === "incomplete")
-                        ? <Button
-                            className="viewCompleteGoalsBtn"
-                            color="secondary"
-                            onClick={() => { setGoalStatus("complete") }}>
-                            View Completed Goals
+                <div>
+                    {
+                        (goalStatus === "incomplete")
+                            ? <Button
+                                className="viewCompleteGoalsBtn"
+                                color="secondary"
+                                onClick={() => { setGoalStatus("complete") }}>
+                                View Completed Goals
                           </Button>
-                        : <Button
-                            className="viewIncompleteGoalsBtn"
-                            color="secondary"
-                            onClick={() => { setGoalStatus("incomplete") }}>
-                            View Incompleted Goals
+                            : <Button
+                                className="viewIncompleteGoalsBtn"
+                                color="secondary"
+                                onClick={() => { setGoalStatus("incomplete") }}>
+                                View Incompleted Goals
                           </Button>
-                }
+                    }
+                </div>
+                <div className="goalList_Add">
+                    <Button
+                        type="submit"
+                        color="primary"
+                        onClick={
+                            evt => {
+                                evt.preventDefault()
+                                setInput(true)
+                            }
+                        }
+                        className="addActionBtn">
+                        Add Goal
+                </Button>
+                </div>
             </div>
-            <div>
+            <div className="text-center">
                 {
                     (goalStatus === "incomplete") ? <h4>Incompleted Goals</h4> : <h4>Completed Goals</h4>
                 }
-                {displayGoals()}
             </div>
-            <Button type="submit"
-                color="primary"
-                onClick={
-                    evt => {
-                        evt.preventDefault()
-                        setInput(true)
-                    }
-                }
-                className="addActionBtn">
-                Add Goal
-                </Button>
-            <div>
+            <div className="displayGoalComponents">
+                {displayGoals()}
                 {displayInput()}
             </div>
         </div>
