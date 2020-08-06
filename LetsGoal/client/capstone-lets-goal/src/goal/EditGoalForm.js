@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { GoalTypeContext } from "../goalType/GoalTypeProvider";
 import { DifficultyContext } from "../difficulty/DifficultyProvider";
 
-export const EditGoalForm = ({ goal, toggle }) => {
+export const EditGoalForm = ({ goal, toggle, setEditGoalInput }) => {
     const { updateGoal } = useContext(GoalContext);
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
@@ -26,7 +26,7 @@ export const EditGoalForm = ({ goal, toggle }) => {
     const editGoal = () => {
         goalUpdate.goalTypeId = parseInt(goalUpdate.goalTypeId);
         goalUpdate.difficultyId = parseInt(goalUpdate.difficultyId);
-        updateGoal(goalUpdate).then(toggle).then(history.push(`/goal/${goal.id}`));
+        updateGoal(goalUpdate).then(toggle).then(setEditGoalInput(false));
     };
 
     return (

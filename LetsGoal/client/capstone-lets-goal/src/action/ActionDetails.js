@@ -12,9 +12,12 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
     const { getAction, updateAction } = useContext(ActionContext);
     const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
+    const [editModal, setEditModal] = useState(false)
+    const toggleEdit = () => setEditModal(!editModal)
+
     const displayInput = () => {
         if (actionInput === true) {
-            return <EditActionForm action={action} />
+            return <EditActionForm action={action} setInput={setInput} toggle={toggleEdit} />
         }
     }
 
@@ -46,7 +49,7 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
         getAction(currentAction.id).then(act => {
             setAction(act)
         })
-    }, [])
+    }, [actionInput])
 
     if (!action || userProfile.id != action.goal.userProfileId) {
         return null
@@ -78,7 +81,7 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
                         {format(new Date(action.dateCreated), 'MM/dd/yyyy')} <br /><br />
                     </div>
                     <div>
-                        <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action) }}>Delete</Button>
+                        <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action); setActiveView({ view: "actionList", currentAction: {} }) }}>Delete</Button>
                         <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
                     </div>
                     <div className="action_displayEditForm">

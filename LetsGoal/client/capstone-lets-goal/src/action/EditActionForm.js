@@ -21,7 +21,7 @@ export const EditActionForm = (props) => {
     const editAction = () => {
         actionUpdate.actionTypeId = parseInt(actionUpdate.actionTypeId);
         actionUpdate.difficultyId = parseInt(actionUpdate.difficultyId);
-        updateAction(actionUpdate).then(props.toggle).then();
+        updateAction(actionUpdate).then(props.toggle).then(props.setInput(false));
     };
 
     return (

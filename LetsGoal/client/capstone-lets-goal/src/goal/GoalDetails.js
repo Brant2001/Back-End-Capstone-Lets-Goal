@@ -29,7 +29,7 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
 
     const editGoalForm = () => {
         if (editGoalInput === true) {
-            return <EditGoalForm goal={goal} />
+            return <EditGoalForm goal={goal} setEditGoalInput={setEditGoalInput} />
         }
     }
 
@@ -88,58 +88,61 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
                     </div>
                     {
                         (goal.userProfileId === userProfile.id)
-                            ? <div>
+                            ? <div className="goalDetails_components">
                                 <div>
-                                    Goal Type: <br />
-                                    {goal.goalType.title} <br /><br />
-                                </div>
-                                <div>
-                                    Difficulty: <br />
-                                    {goal.difficulty.title} <br /><br />
-                                </div>
-                                <div>
-                                    Date Created: <br />
-                                    {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
-                                </div>
-                                <div>
-                                    <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal) }}>Delete</Button>
-                                    <Button color="primary" onClick={evt => { evt.preventDefault(); setEditGoalInput(true) }}>Edit</Button>
-                                </div>
-                                <div>{editGoalForm()}</div>
-                                {
-                                    (goal.isComplete === false)
-                                        ? <Button className="completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal); setGoalStatus("complete"); history.push("/") }}>Complete</Button>
-                                        : <Button className="incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal); setGoalStatus("incomplete"); history.push("/") }}>Not Complete</Button>
+                                    <div>
+                                        Goal Type: <br />
+                                        {goal.goalType.title} <br /><br />
+                                    </div>
+                                    <div>
+                                        Difficulty: <br />
+                                        {goal.difficulty.title} <br /><br />
+                                    </div>
+                                    <div>
+                                        Date Created: <br />
+                                        {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
+                                    </div>
+                                    <div>
+                                        <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal); history.push("/") }}>Delete</Button>
+                                        <Button color="primary" onClick={evt => { evt.preventDefault(); setEditGoalInput(true) }}>Edit</Button>
+                                    </div>
+                                    <div>{editGoalForm()}</div>
+                                    {
+                                        (goal.isComplete === false)
+                                            ? <Button className="completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal); setGoalStatus("complete"); history.push("/") }}>Complete</Button>
+                                            : <Button className="incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal); setGoalStatus("incomplete"); history.push("/") }}>Not Complete</Button>
 
-                                }
-
-                                <div className="actionBtns">
-                                    <Button className="viewActionBtn" color="secondary"
-                                        onClick={
-                                            () => {
-                                                setActionDash(true)
-                                            }
-                                        }>View Actions
-                                    </Button>
-
-                                    <Button className="hideActionBtn" color="secondary"
-                                        onClick={
-                                            () => {
-                                                setActionDash(false)
-                                            }
-                                        }>Hide Actions
-                                    </Button>
+                                    }
                                 </div>
+                                <div className="goalDetails_actions">
+                                    <div className="actionBtns">
+                                        <Button className="viewActionBtn" color="secondary"
+                                            onClick={
+                                                () => {
+                                                    setActionDash(true)
+                                                }
+                                            }>View Actions
+                                        </Button>
 
-                                <div>
-                                    {displayActionDash()}
+                                        <Button className="hideActionBtn" color="secondary"
+                                            onClick={
+                                                () => {
+                                                    setActionDash(false)
+                                                }
+                                            }>Hide Actions
+                                        </Button>
+                                    </div>
+
+                                    <div>
+                                        {displayActionDash()}
+                                    </div>
                                 </div>
                             </div>
                             : <div></div>
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
