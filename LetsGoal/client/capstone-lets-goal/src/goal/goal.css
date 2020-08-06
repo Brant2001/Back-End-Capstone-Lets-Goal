@@ -1,2 +1,18 @@
 .goalDetails_components {
     }
+.goal {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: solid thin black;
+    border-radius: 10px;
+}
+
+.goalList_btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.goalList_Add {
+    margin-left: 5rem;
+}

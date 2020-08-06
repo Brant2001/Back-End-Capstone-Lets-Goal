@@ -29,7 +29,7 @@ export default function Register() {
 
     return (
         <Form onSubmit={registerClick}>
-            <fieldset>
+            <fieldset className="registerForm">
                 <FormGroup>
                     <Label htmlFor="firstName">FirstName</Label>
                     <Input id="firstName" type="text" onChange={e => setFName(e.target.value)} />
@@ -42,16 +42,13 @@ export default function Register() {
                     <Label htmlFor="displayName">DisplayName</Label>
                     <Input id="displayName" type="text" onChange={e => setDName(e.target.value)} />
                 </FormGroup>
-                {/* <Button className="publicBtn" onClick={() => setIsPublic(true)} >Public</Button>
-                <Button className="publicBtn" onClick={() => setIsPublic(false)} >Private</Button>
-                {profileStatus()} */}
                 <FormGroup>
                     <Label htmlFor="image">Profile Picture</Label>
                     <Input id="image" type="text" onChange={e => setImage(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="isPublic">Public</Label>
-                    <Input id="isPublic" type="checkbox" onChange={e => setIsPublic(e.target.checked)} />
+                    <div>Public</div>
+                    <div className="public_checkbox"><Input id="isPublic" type="checkbox" onChange={e => setIsPublic(e.target.checked)} /></div>
                 </FormGroup>
                 <FormGroup>
                     <Label for="email">Email</Label>
