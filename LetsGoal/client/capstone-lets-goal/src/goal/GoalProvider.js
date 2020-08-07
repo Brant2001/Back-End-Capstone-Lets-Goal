@@ -34,6 +34,7 @@ export const GoalProvider = (props) => {
     };
 
     const updateGoal = (goal) => {
+        debugger
         return getToken().then((token) =>
             fetch(`/api/goal/${goal.id}`, {
                 method: "PUT",
@@ -42,8 +43,7 @@ export const GoalProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(goal),
-            }).then(() => getGoal(goal.id)));
-
+            }).then(() => getGoal(goal.id)))
     }
 
     const deleteGoal = (goal) => {

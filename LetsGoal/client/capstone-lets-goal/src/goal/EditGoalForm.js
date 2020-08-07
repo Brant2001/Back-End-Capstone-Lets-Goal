@@ -1,11 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GoalContext } from "./GoalProvider";
 import { Button, Form } from "reactstrap";
-import { useHistory } from "react-router-dom";
 import { GoalTypeContext } from "../goalType/GoalTypeProvider";
 import { DifficultyContext } from "../difficulty/DifficultyProvider";
 
-export const EditGoalForm = ({ goal, setGoal, setEditGoalInput }) => {
+export const EditGoalForm = ({ goal, setEditGoalInput }) => {
     const { updateGoal } = useContext(GoalContext);
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
@@ -27,8 +26,6 @@ export const EditGoalForm = ({ goal, setGoal, setEditGoalInput }) => {
         goalUpdate.difficultyId = parseInt(goalUpdate.difficultyId);
         updateGoal(goalUpdate)
             .then(setEditGoalInput(false))
-        window.location.reload(false);
-
     };
 
     return (
