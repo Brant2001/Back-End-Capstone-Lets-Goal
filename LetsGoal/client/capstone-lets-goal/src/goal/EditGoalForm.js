@@ -46,8 +46,8 @@ export const EditGoalForm = ({ goal, setEditGoalInput }) => {
                                 onChange={handleControlledInputChange}
                             />
                             Description:
-                            <input
-                                type="textarea"
+                            <textarea
+                                type="text"
                                 name="description"
                                 rows="20"
                                 columns="50"

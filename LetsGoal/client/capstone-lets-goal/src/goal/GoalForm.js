@@ -61,8 +61,8 @@ export default ({ setActionInput, setGoalCompsSeen }) => {
                 <fieldset>
                     <div className='form-group'>
                         <label htmlFor='goalDescription'>Goal Description: </label>
-                        <input
-                            type='textarea'
+                        <textarea
+                            type='text'
                             id='goalDescription'
                             ref={description}
                             required
