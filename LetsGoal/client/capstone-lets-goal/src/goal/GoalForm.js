@@ -9,7 +9,6 @@ export default ({ setActionInput, setGoalCompsSeen }) => {
     const { addGoal } = useContext(UserGoalContext)
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
-    const history = useHistory()
 
     const title = useRef('title')
     const description = useRef('description')

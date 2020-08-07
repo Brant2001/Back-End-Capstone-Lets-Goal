@@ -58,10 +58,10 @@ export const ActionList = ({ setActiveView, goalId, actionStatus, setActionStatu
                     Add Action
                     </Button>
             </div>
+            {
+                (actionStatus === "incomplete") ? <h4>Incompleted Actions</h4> : <h4>Completed Actions</h4>
+            }
             <div className="actionList_displayActions">
-                {
-                    (actionStatus === "incomplete") ? <h4>Incompleted Actions</h4> : <h4>Completed Actions</h4>
-                }
                 {displayActions()}
             </div>
         </div>

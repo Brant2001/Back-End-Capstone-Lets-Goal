@@ -9,7 +9,7 @@ import { EditGoalForm } from './EditGoalForm';
 
 export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
     const [goal, setGoal] = useState()
-    const [actionDash, setActionDash] = useState(false)
+    const [actionDash, setActionDash] = useState(true)
     const [editGoalInput, setEditGoalInput] = useState(false)
     const { getGoal, updateGoal, deleteGoal } = useContext(GoalContext);
     const { id } = useParams()
@@ -28,7 +28,7 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
 
     const editGoalForm = () => {
         if (editGoalInput === true) {
-            return <EditGoalForm goal={goal} setEditGoalInput={setEditGoalInput} />
+            return <EditGoalForm goal={goal} setGoal={setGoal} setEditGoalInput={setEditGoalInput} />
         }
     }
 
@@ -63,85 +63,67 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
     }
 
     return (
-        <div className='col-sm-12 col-lg-6 userGoalDetails'>
-            <div className="userGoalDetails_items">
-                <div className="userGoalDetails_btns">
-                    {
-                        (goal.userProfileId === userProfile.id)
-                            ? <Link className="backLink" to={'/'} ><Button className="backBtn secondary">Back to Goals</Button></Link>
-                            : <Link className="backLink" to={'/goal'} ><Button className="backBtn secondary">Back to All Goals</Button></Link>
-                    }
-                    <Button className="viewActionBtn" color="secondary"
-                        onClick={
-                            () => {
-                                setActionDash(true)
-                            }
-                        }>View Actions
-                    </Button>
-
-                    <Button className="hideActionBtn" color="secondary"
-                        onClick={
-                            () => {
-                                setActionDash(false)
-                            }
-                        }>Hide Actions
-                    </Button>
+        <div>
+            <div className="userGoalDetails_btns">
+                {
+                    (goal.userProfileId === userProfile.id)
+                        ? <Link className="backLink" to={'/'} ><Button className="backBtn secondary">Back to Goals</Button></Link>
+                        : <Link className="backLink" to={'/goal'} ><Button className="backBtn secondary">Back to All Goals</Button></Link>
+                }
+                <div className="setWidth userGoalDetails_title">
+                    <h3>{goal.title}</h3>
                 </div>
-                <div className="userGoalDetails_specs">
-                    <div className="userGoalDetails_title">
-                        <h3>{goal.title}</h3>
+                <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal); history.push("/") }}>Delete</Button>
+            </div>
+            <div className='col-sm-12 col-lg-6 userGoalDetails'>
+                <div className="userGoalDetails_items">
+                    <div className="userGoalDetails_specs">
+                        <div>
+                            <h5>Description :</h5>
+                            {goal.description} <br /><br />
+                        </div>
                         {
                             (goal.userProfileId === userProfile.id)
-                                ? <h5>{goal.userProfile.fullName}</h5>
+                                ? <div className="userGoalDetails_components">
+                                    <div>
+                                        <div>
+                                            <h6>Goal Type:</h6>
+                                            {goal.goalType.title} <br /><br />
+                                        </div>
+                                        <div>
+                                            <h6>Difficulty:</h6>
+                                            {goal.difficulty.title} <br /><br />
+                                        </div>
+                                        <div>
+                                            <h6>Date Created:</h6>
+                                            {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
+                                        </div>
+                                        <div className="isComplete-Edit-GoalBtn">
+                                            {
+                                                (goal.isComplete === false)
+                                                    ? <Button className="setBtnWidth completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal); setGoalStatus("complete"); history.push("/") }}>Complete</Button>
+                                                    : <Button className="setBtnWidth incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal); setGoalStatus("incomplete"); history.push("/") }}>Not Complete</Button>
+
+                                            }
+                                            <Button className="setBtnWidth" color="primary" onClick={evt => { evt.preventDefault(); setEditGoalInput(true) }}>Edit</Button>
+                                        </div>
+                                        <div>
+                                            {editGoalForm()}
+                                        </div>
+                                    </div>
+                                </div>
                                 : <div></div>
                         }
                     </div>
-                    <div>
-                        <h5>Description :</h5>
-                        {goal.description} <br /><br />
-                    </div>
-                    {
-                        (goal.userProfileId === userProfile.id)
-                            ? <div className="userGoalDetails_components">
-                                <div>
-                                    <div>
-                                        Goal Type: <br />
-                                        {goal.goalType.title} <br /><br />
-                                    </div>
-                                    <div>
-                                        Difficulty: <br />
-                                        {goal.difficulty.title} <br /><br />
-                                    </div>
-                                    <div>
-                                        Date Created: <br />
-                                        {format(new Date(goal.dateCreated), 'MM/dd/yyyy')} <br /><br />
-                                    </div>
-                                    <div className="goal-EditDelete-btns">
-                                        <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal); history.push("/") }}>Delete</Button>
-                                        <Button color="primary" onClick={evt => { evt.preventDefault(); setEditGoalInput(true) }}>Edit</Button>
-                                    </div>
-                                    <div>{editGoalForm()}</div>
-                                    <div className="isCompleteGoalBtn">
-                                        {
-                                            (goal.isComplete === false)
-                                                ? <Button className="completeGoalBtn" color="secondary" onClick={() => { completeGoal(goal); setGoalStatus("complete"); history.push("/") }}>Complete</Button>
-                                                : <Button className="incompleteGoalBtn" color="secondary" onClick={() => { incompleteGoal(goal); setGoalStatus("incomplete"); history.push("/") }}>Not Complete</Button>
-
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            : <div></div>
-                    }
                 </div>
+                {
+                    (goal.userProfileId === userProfile.id)
+                        ? <div className="userGoalDetails_actions">
+                            {displayActionDash()}
+                        </div>
+                        : <div></div>
+                }
             </div>
-            {
-                (goal.userProfileId === userProfile.id)
-                    ? <div className="userGoalDetails_actions">
-                        {displayActionDash()}
-                    </div>
-                    : <div></div>
-            }
         </div>
     )
 }
