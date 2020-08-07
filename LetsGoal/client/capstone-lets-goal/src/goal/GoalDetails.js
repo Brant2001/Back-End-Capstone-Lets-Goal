@@ -73,7 +73,11 @@ export const GoalDetails = ({ goalStatus, setGoalStatus }) => {
                 <div className="setWidth userGoalDetails_title">
                     <h3>{goal.title}</h3>
                 </div>
-                <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal); history.push("/") }}>Delete</Button>
+                {
+                    (goal.userProfileId === userProfile.id)
+                        ? <Button color="danger" onClick={evt => { evt.preventDefault(); deleteGoal(goal); history.push("/") }}>Delete</Button>
+                        : <div></div>
+                }
             </div>
             <div className='col-sm-12 col-lg-6 userGoalDetails'>
                 <div className="userGoalDetails_items">
