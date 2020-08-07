@@ -1,0 +1,75 @@
+.actionList {
+    border: solid thin black;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 45rem;
+}
+
+.actionList_btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actionForm_btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.actionList_displayActions {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+}
+
+.action {
+    border-radius: 3px;
+    padding: 2rem;
+    max-width: 40%;
+    min-width: 40%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: solid thin black;
+}
+
+.actionDetails {
+    border: solid thin black;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 40rem;
+}
+
+.actionLink {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actionLink_btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.editActionForm {
+    min-width: 60%;
+    align-content: center;
+    border: solid thin black;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.editActionLabel {
+    width: 100%;
+}
+
+.newActionForm {
+    min-width: 60%;
+    min-height: 40rem;
+    align-content: center;
+    border: solid thin black;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 10px;
+}

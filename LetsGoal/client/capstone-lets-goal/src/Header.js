@@ -27,7 +27,7 @@ export default function Header() {
                     <Nav className="mr-auto" navbar>
                         {isLoggedIn &&
                             <NavItem>
-                                <NavLink tag={RRNavLink} to="/goal">Goals</NavLink>
+                                <NavLink tag={RRNavLink} to="/goal">View Other Goals</NavLink>
                             </NavItem>
                         }
                     </Nav>

@@ -1,18 +1,141 @@
-.goalDetails_components {
+/*
+    Goal CSS
+*/ 
+    .goalList {
+        display: flex;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        justify-content: space-evenly;
     }
-.goal {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: solid thin black;
-    border-radius: 10px;
-}
 
-.goalList_btns {
-    display: flex;
-    justify-content: space-evenly;
-}
+    .goal {
+        border-radius: 10px;
+        padding: 2rem;
+        max-width: 40%;
+        min-width: 40%;
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: solid thin black;
+    }
 
-.goalList_Add {
-    margin-left: 5rem;
-}
+/*
+    User Goal CSS
+*/
+    .displayUserGoalComponents {
+        display: flex;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        justify-content: space-evenly;
+    }
+
+    .userGoal {
+        border-radius: 10px;
+        padding: 2rem;
+        max-width: 40%;
+        min-width: 40%;
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: solid thin black;
+    }
+
+    .userGoalList_btns {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .userGoalList_Add {
+        margin-left: 70%;
+    }
+
+    .newGoalForm {
+        min-width: 60%;
+        align-content: center;
+        border: solid thin black;
+        border-radius: 10px;
+        margin: 1rem;
+        margin-left: 25%;
+        margin-right: 25%;
+        padding: 10px;
+    }
+
+    .editGoalForm {
+        min-width: 60%;
+        align-content: center;
+        border: solid thin black;
+        border-radius: 10px;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .setBtnWidth {
+        min-width: 20%;
+    }
+
+    .editGoalLabel {
+        width: 100%;
+    }
+
+    .goalForm_btns {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .btns {
+        min-width: 100px;
+    }
+
+    .userGoalDetails {
+        display: flex;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1rem;
+        border: solid black thin;
+        justify-content: space-between;
+        min-width: 98%;
+    }
+
+    .userGoalDetails_items {
+        width: 45%;
+    }
+
+    .userGoalDetails_actions {
+        width: 45%;
+    }
+
+    .completeGoalBtn {
+        margin-left: 2rem;
+    }
+
+     .userGoalDetails_btns {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .setWidth {
+        display: flex;
+        min-width: 30%;
+        justify-content: center;
+    }
+
+    .goal-EditDelete-btns {
+        display: flex; 
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    .userGoalDetails_specs {
+        padding: 10px;
+        min-height: 100%;
+    }
+
+    .isComplete-Edit-GoalBtn {
+        display: flex;
+        justify-content: space-between;
+    }

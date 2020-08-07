@@ -56,43 +56,41 @@ export const ActionDetails = ({ currentAction, setActiveView, actionStatus, setA
     }
 
     return (
-        <div className='col-sm-12 col-lg-6'>
+        <div className="actionDetails">
             <div className="actionLink">
                 {
                     (action.isComplete === true)
                         ? <Button className="backBtn secondary" onClick={() => { setActiveView({ view: "actionList", currentAction: action }) }}>Back to Actions</Button>
                         : <Button className="backBtn secondary" onClick={() => { setActiveView({ view: "completedList", currentAction: action }) }}>Back to Completed actions</Button>
                 }
+                <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action); setActiveView({ view: "actionList", currentAction: {} }) }}>Delete</Button>
             </div>
-            <div className="m-4 actionDetails">
-                <div className="actionTitle">
-                    <h3>{action.title}</h3>
-                </div>
+            <div className="actionTitle">
+                <h3>{action.title}</h3>
+            </div>
 
-                <div className="actionItems">
-                    Description: <br />
-                    {action.description} <br /><br />
-                    <div>
-                        Difficulty: <br />
-                        {action.difficulty.title} <br /><br />
-                    </div>
-                    <div>
-                        Date Created: <br />
-                        {format(new Date(action.dateCreated), 'MM/dd/yyyy')} <br /><br />
-                    </div>
-                    <div>
-                        <Button color="danger" onClick={evt => { evt.preventDefault(); deleteAction(action); setActiveView({ view: "actionList", currentAction: {} }) }}>Delete</Button>
-                        <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
-                    </div>
-                    <div className="action_displayEditForm">
-                        {displayInput()}
-                    </div>
+            <div className="actionItems">
+                Description: <br />
+                {action.description} <br /><br />
+                <div>
+                    Difficulty: <br />
+                    {action.difficulty.title} <br /><br />
+                </div>
+                <div>
+                    Date Created: <br />
+                    {format(new Date(action.dateCreated), 'MM/dd/yyyy')} <br /><br />
+                </div>
+                <div className="actionLink_btns">
                     {
                         (action.isComplete === false)
                             ? <Button className="completeActionBtn" color="secondary" onClick={() => { completeAction(action); setActionStatus("complete"); setActiveView("actionList") }}>Complete</Button>
                             : <Button className="incompleteActionBtn" color="secondary" onClick={() => { incompleteAction(action); setActionStatus("incomplete"); setActiveView("actionList") }}>Not Complete</Button>
 
                     }
+                    <Button color="primary" onClick={evt => { evt.preventDefault(); setInput(true) }}>Edit</Button>
+                </div>
+                <div className="action_displayEditForm">
+                    {displayInput()}
                 </div>
             </div>
         </div>

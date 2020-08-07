@@ -29,42 +29,40 @@ export const ActionList = ({ setActiveView, goalId, actionStatus, setActionStatu
     }, []);
 
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="actionList_btns">
-                    {
-                        (actionStatus === "incomplete")
-                            ? <Button
-                                className="viewCompleteActionsBtn"
-                                color="secondary"
-                                onClick={() => { setActionStatus("complete"); console.log(actionStatus) }}>
-                                View Completed Actions
+        <div className="actionList">
+            <div className="actionList_btns">
+                {
+                    (actionStatus === "incomplete")
+                        ? <Button
+                            className="viewCompleteActionsBtn"
+                            color="secondary"
+                            onClick={() => { setActionStatus("complete"); console.log(actionStatus) }}>
+                            View Completed Actions
                               </Button>
-                            : <Button
-                                className="viewIncompleteActionsBtn"
-                                color="secondary"
-                                onClick={() => { setActionStatus("incomplete"); console.log(actionStatus) }}>
-                                View Incompleted Actions
+                        : <Button
+                            className="viewIncompleteActionsBtn"
+                            color="secondary"
+                            onClick={() => { setActionStatus("incomplete"); console.log(actionStatus) }}>
+                            View Incompleted Actions
                               </Button>
-                    }
-                    <Button type="submit"
-                        color="primary"
-                        onClick={
-                            evt => {
-                                evt.preventDefault()
-                                setActiveView({ view: "actionForm", currentAction: {} })
-                            }
+                }
+                <Button type="submit"
+                    color="primary"
+                    onClick={
+                        evt => {
+                            evt.preventDefault()
+                            setActiveView({ view: "actionForm", currentAction: {} })
                         }
-                        className="addActionBtn">
-                        Add Action
-                    </Button>
-                </div>
-                <div className="actionList_displayActions">
-                    {
-                        (actionStatus === "incomplete") ? <h4>Incompleted Actions</h4> : <h4>Completed Actions</h4>
                     }
-                    {displayActions()}
-                </div>
+                    className="addActionBtn">
+                    Add Action
+                    </Button>
+            </div>
+            {
+                (actionStatus === "incomplete") ? <h4>Incompleted Actions</h4> : <h4>Completed Actions</h4>
+            }
+            <div className="actionList_displayActions">
+                {displayActions()}
             </div>
         </div>
     );

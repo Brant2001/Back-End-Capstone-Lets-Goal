@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useEffect } from 'react'
 import { DifficultyContext } from '../difficulty/DifficultyProvider'
 import { ActionContext } from './ActionProvider'
+import { Button } from 'reactstrap'
 
 export const ActionForm = ({ goalId, setActiveView }) => {
     const { addAction } = useContext(ActionContext)
@@ -52,8 +53,8 @@ export const ActionForm = ({ goalId, setActiveView }) => {
                 <fieldset>
                     <div className='form-group'>
                         <label htmlFor='actionDescription'>Action Description: </label>
-                        <input
-                            type='textarea'
+                        <textarea
+                            type='text'
                             id='actionDescription'
                             ref={description}
                             required
@@ -86,18 +87,23 @@ export const ActionForm = ({ goalId, setActiveView }) => {
                         </select>
                     </div>
                 </fieldset>
-
-                <button
-                    type='submit'
-                    onClick={evt => {
-                        evt.preventDefault() // Prevent browser from submitting the form
-                        constructNewAction()
-
-                    }}
-                    className='btn btn-primary'
-                >
-                    Save Action
-      </button>
+                <div className="actionForm_btns">
+                    <Button
+                        className='btn btn-primary'
+                        color="primary"
+                        onClick={evt => {
+                            evt.preventDefault() // Prevent browser from submitting the form
+                            constructNewAction()
+                        }}>Save Action
+                    </Button>
+                    <Button
+                        className="btns"
+                        color="secondary"
+                        onClick={() => {
+                            setActiveView({ view: "actionList", currentAction: {} })
+                        }}>Cancel
+                    </Button>
+                </div>
             </form>
         </div>
     )

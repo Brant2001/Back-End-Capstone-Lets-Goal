@@ -29,7 +29,7 @@ export const EditActionForm = (props) => {
             <Form className="editActionForm">
                 <fieldset>
                     <div className="form-group">
-                        <label htmlFor="title">
+                        <label className="editActionLabel" htmlFor="title">
                             Title:
                             <input
                                 type="text"
@@ -43,11 +43,9 @@ export const EditActionForm = (props) => {
                             />
 
                             Description:
-                            <input
-                                type="textarea"
+                            <textarea
+                                type="text"
                                 name="description"
-                                rows="20"
-                                columns="50"
                                 required
                                 autoFocus
                                 className="form-control"

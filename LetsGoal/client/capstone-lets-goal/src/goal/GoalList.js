@@ -12,13 +12,11 @@ export const GoalList = () => {
     return (
         <div className="container">
             <div className="goalList">
-                <div className="goalList_btns">
-                    {
-                        goals.map((goal) => (
-                            <Goal key={goal.id} goal={goal} />
-                        ))
-                    }
-                </div>
+                {
+                    goals.map((goal) => (
+                        <Goal key={goal.id} goal={goal} />
+                    ))
+                }
             </div>
         </div>
     );

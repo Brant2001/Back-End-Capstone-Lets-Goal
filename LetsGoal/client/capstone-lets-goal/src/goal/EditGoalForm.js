@@ -1,21 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GoalContext } from "./GoalProvider";
 import { Button, Form } from "reactstrap";
-import { useHistory } from "react-router-dom";
 import { GoalTypeContext } from "../goalType/GoalTypeProvider";
 import { DifficultyContext } from "../difficulty/DifficultyProvider";
 
-export const EditGoalForm = ({ goal, toggle, setEditGoalInput }) => {
+export const EditGoalForm = ({ goal, setEditGoalInput }) => {
     const { updateGoal } = useContext(GoalContext);
     const { goalTypes, getAllGoalTypes } = useContext(GoalTypeContext);
     const { difficulties, getAllDifficulties } = useContext(DifficultyContext);
-    const [goalUpdate, setGoal] = useState(goal);
-    const history = useHistory();
+    const [goalUpdate, setGoalUpdate] = useState(goal);
 
     const handleControlledInputChange = (event) => {
         const newGoal = Object.assign({}, goalUpdate);
         newGoal[event.target.name] = event.target.value;
-        setGoal(newGoal);
+        setGoalUpdate(newGoal);
     };
 
     useEffect(() => {
@@ -26,7 +24,8 @@ export const EditGoalForm = ({ goal, toggle, setEditGoalInput }) => {
     const editGoal = () => {
         goalUpdate.goalTypeId = parseInt(goalUpdate.goalTypeId);
         goalUpdate.difficultyId = parseInt(goalUpdate.difficultyId);
-        updateGoal(goalUpdate).then(toggle).then(setEditGoalInput(false));
+        updateGoal(goalUpdate)
+            .then(setEditGoalInput(false))
     };
 
     return (
@@ -34,7 +33,7 @@ export const EditGoalForm = ({ goal, toggle, setEditGoalInput }) => {
             <Form className="editGoalForm">
                 <fieldset>
                     <div className="form-group">
-                        <label htmlFor="title">
+                        <label className="editGoalLabel" htmlFor="title">
                             Title:
                             <input
                                 type="text"
@@ -47,8 +46,8 @@ export const EditGoalForm = ({ goal, toggle, setEditGoalInput }) => {
                                 onChange={handleControlledInputChange}
                             />
                             Description:
-                            <input
-                                type="textarea"
+                            <textarea
+                                type="text"
                                 name="description"
                                 rows="20"
                                 columns="50"
@@ -101,8 +100,8 @@ export const EditGoalForm = ({ goal, toggle, setEditGoalInput }) => {
                     }}
                 >
                     Save Updates
-        </Button>
-                <Button onClick={toggle}>Cancel</Button>
+                </Button>
+                <Button>Cancel</Button>
             </Form>
         </>
     );
