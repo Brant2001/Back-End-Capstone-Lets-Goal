@@ -41,8 +41,8 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 
 ### Setting up the DB (This can be done through Visual Studio)
 1. Connect to your SQL Server
-2. Navigate to the SQL folder within the LetsGoal application. Run 01_Db_Create.sql to create all the neccessary tables.
-3. The second file, 02_Seed_Data.sql sets up the mood emojis, avatars, and user types. It also contains some seed user and post data. You will need to run the first half of the file, but the user data is optional. If you want to create your project without any initial users do not run the SQL commands after the comment on line 244.
+2. Navigate to the SQL folder within the LetsGoal application. Run the contents of 'Let'sGoal-SQL-script.sql' inside a new SQL query to create all the neccessary tables.
+3. Now do the same with the contents of 'Let'sGoal-SQL-seed.sql'
 
 ### Setting up the users (only do this if you are using the user and post seed data)
 On your Google Firebase project, click on the Authentication link. You will need to add users (there are 25 total) that have e-mail addresses that matches the ones in the database. Make sure that you have e-mail verification set to OFF before you add the seed users. Once you've added the users, replace their Firebase UID's in the SQL file with the ones matching your newly created Firebase Users. Then you can run the SQL file.
