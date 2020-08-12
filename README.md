@@ -41,11 +41,8 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 
 ### Setting up the DB (This can be done through Visual Studio)
 1. Connect to your SQL Server
-2. Navigate to the SQL folder within the LetsGoal application. Run the contents of 'Let'sGoal-SQL-script.sql' inside a new SQL query to create all the neccessary tables.
-3. Now do the same with the contents of 'Let'sGoal-SQL-seed.sql'
-
-### Setting up the users (only do this if you are using the user and post seed data)
-On your Google Firebase project, click on the Authentication link. You will need to add users (there are 25 total) that have e-mail addresses that matches the ones in the database. Make sure that you have e-mail verification set to OFF before you add the seed users. Once you've added the users, replace their Firebase UID's in the SQL file with the ones matching your newly created Firebase Users. Then you can run the SQL file.
+2. Navigate to the SQL folder within the LetsGoal application. Run the contents of "Let'sGoal-SQL-script.sql" inside a new SQL query to create all the neccessary tables.
+3. Now do the same with the contents of "Let'sGoal-SQL-seed.sql". Everything from line 1-9 is required but everything below that is optional. If you choose to run the rest be sure to create three equivilent users in your firebase project and replace the firebase user ids in the seed file with the ones you just created.
 
 ### Install missing dependencies
 1. Navigate to the client folder in your terminal
@@ -56,12 +53,3 @@ On your Google Firebase project, click on the Authentication link. You will need
 1. Start your server. This can be done through Visual Studio. When running through Visual Studio do not use the IIS option!
 2. Navigate to the client folder.
 3. Type the command `npm start`
-
-## Technology Utilized
-
-1. Micorosoft SQL Server Express
-1. Microsoft Visual C#
-1. Entity Framework
-1. Google Firebase Authentication
-1. React.JS
-1. React Routing
