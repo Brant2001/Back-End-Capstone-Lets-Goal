@@ -52,3 +52,7 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 1. Start your server. This can be done through Visual Studio. When running through Visual Studio do not use the IIS option! Instead, choose from the dropdown the "LetsGoal" option. 
 2. From the terminal navigate to the client folder within the LetsGoal project.
 3. Type the command `npm start`
+
+## Let's Connect!
+Send me a connection request on [LinkedIn](https://www.linkedin.com/in/brantpippin/)
+If you find that anything is wrong with the app or you have any suggestions please feel free to email me at brant.pippin@gmail.com
