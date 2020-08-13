@@ -7,6 +7,10 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 
 ## Technologies Used
 
+### Planning
+- [dbdiagram.io](https://dbdiagram.io/d) (Entity Relationship Diagram)
+- [Sketchboard.me](https://sketchboard.io/) (Used for Wireframing)
+
 ### Client-Side
 * HTML, CSS, Javascript
 * React
@@ -19,14 +23,14 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 * Entity Framework Core
 * SQL Server Database
 
-### Other Technologies
-- [node.js](https://nodejs.org/en/) (JS Framework)
-- [npm](https://www.npmjs.com/) (Pkg Manager)
-- [Visual Studio](https://visualstudio.microsoft.com/) (Code Editor/Development Environment)
+### Authentication
 - [Google Firebase](https://firebase.google.com/) (Authentication)
+
+### Other Technologies
+- [npm](https://www.npmjs.com/) (Pkg Manager)
+- [node.js](https://nodejs.org/en/) (JS Framework)
 - [date-fns](https://date-fns.org/) (Date Manipulation)
-- [dbdiagram.io](https://dbdiagram.io/d) (Entity Relationship Diagram)
-- [Sketchboard.me](https://sketchboard.io/) (Used for Wireframing)
+- [Visual Studio](https://visualstudio.microsoft.com/) (Code Editor/Development Environment)
 
 ## Installation
 
