@@ -24,10 +24,9 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 - [npm](https://www.npmjs.com/) (Pkg Manager)
 - [Visual Studio](https://visualstudio.microsoft.com/) (Code Editor/Development Environment)
 - [Google Firebase](https://firebase.google.com/) (Authentication)
-- [Google Firebase](https://firebase.google.com/) is used for user authentication
 - [date-fns](https://date-fns.org/) (Date Manipulation)
-- [dbdiagram.io](https://dbdiagram.io/d) for planning the data structure
-- [Sketchboard.me](https://sketchboard.io/) for wireframing
+- [dbdiagram.io](https://dbdiagram.io/d) (Entity Relationship Diagram)
+- [Sketchboard.me](https://sketchboard.io/) (Used for Wireframing)
 
 ## Installation
 
@@ -50,6 +49,6 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 
 ## Running the App
 
-1. Start your server. This can be done through Visual Studio. When running through Visual Studio do not use the IIS option!
-2. Navigate to the client folder.
+1. Start your server. This can be done through Visual Studio. When running through Visual Studio do not use the IIS option! Instead, choose from the dropdown the "LetsGoal" option. 
+2. From the terminal navigate to the client folder within the LetsGoal project.
 3. Type the command `npm start`
