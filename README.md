@@ -57,5 +57,4 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 3. Type the command `npm start`
 
 ## Let's Connect!
-Send me a connection request on [LinkedIn](https://www.linkedin.com/in/brantpippin/).
-If you find that anything is wrong with the app or you have any suggestions please feel free to email me at brant.pippin@gmail.com
+If you find that anything is wrong with the app or you have any suggestions please feel free to email me at brant.pippin@gmail.com or connect with me on [LinkedIn](https://www.linkedin.com/in/brantpippin/).
