@@ -8,7 +8,7 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 
 ### Planning
 - [dbdiagram.io](https://dbdiagram.io/d) (Entity Relationship Diagram)
-- [Sketchboard.me](https://sketchboard.io/) (Used for Wireframing)
+- [Sketchboard.io](https://sketchboard.io/) (Used for Wireframing)
 
 ### Client-Side
 * HTML, CSS, Javascript
