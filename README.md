@@ -21,12 +21,12 @@ Let's Goal is a fully functional goal keeping app that allows you to keep track 
 * SQL Server Database
 
 ### Authentication
-- [Google Firebase](https://firebase.google.com/) (Authentication)
+- [Google Firebase](https://firebase.google.com/)
 
 ### Other Technologies
-- [npm](https://www.npmjs.com/) (Pkg Manager) Required
-- [node.js](https://nodejs.org/en/) (JS Framework) Required
-- [date-fns](https://date-fns.org/) (Date Manipulation) Required
+- [npm](https://www.npmjs.com/) (Pkg Manager)
+- [node.js](https://nodejs.org/en/) (JS Framework)
+- [date-fns](https://date-fns.org/) (Date Manipulation)
 - [Visual Studio](https://visualstudio.microsoft.com/) (Code Editor/Development Environment)
 
 ## Installation
